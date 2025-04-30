@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,15 @@ namespace CinemaPremiera
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void BtnClick_Exit(object sender, RoutedEventArgs e)
+        {
+            // Получаем путь к текущему исполняемому файлу
+            string applicationPath = Process.GetCurrentProcess().MainModule.FileName;
+
+            Process.Start(applicationPath);
+            Application.Current.Shutdown();
         }
     }
 }

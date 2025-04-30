@@ -5,10 +5,62 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CinemaPremiera.pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="575" d:DesignWidth="1100"
       Title="MenuPage">
 
-    <Grid>
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Background="DarkGray">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Фильтр" HorizontalAlignment="Center"
+                           FontSize="22" FontWeight="DemiBold"/>
+                <Button Margin="0 10 0 0" Content="Применить"
+                        Height="25" Width="150" FontSize="16"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Поиск" HorizontalAlignment="Center"
+                           FontSize="22" FontWeight="DemiBold"/>
+                <TextBox x:Name="Tbox_Search" Margin="0 10 0 0"
+                         Height="25" Width="150" FontSize="16"/>
+            </StackPanel>
+            
+        </Grid>
+
+        <DataGrid Grid.Column="2" Background="LightGray" AutoGenerateColumns="False" 
+                  IsReadOnly="True">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+                <!--<Style TargetType="TextBlock" x:Key="CenterText">
+                    <Setter Property="TextAlignment" Value="Center"/>
+                </Style>-->
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="50"/>
+                <DataGridTextColumn Header="Дата" Width="120"/>
+                <DataGridTextColumn Header="Название фильма" Width="150*"/>
+                <DataGridTextColumn Header="Цена" Width="50"/>
+                <DataGridTextColumn Header="Кол-во" Width="100"/>
+                <DataGridTextColumn Header="Вид оплаты" Width="100"/>
+                <DataGridTextColumn Header="Сумма в чеке" Width="100"/>
+                <DataGridTextColumn Header="Сумма за день" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
         
     </Grid>
 </Page>

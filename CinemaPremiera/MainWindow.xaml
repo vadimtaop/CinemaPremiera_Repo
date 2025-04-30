@@ -5,13 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CinemaPremiera"
         mc:Ignorable="d"
-        Title='Кинотеатр "Премьера"' Height="550" Width="1000" 
-        Background="DarkGray" WindowStartupLocation="CenterScreen">
+        MinHeight="650" MinWidth="1200"
+        Title='Кинотеатр "Премьера"' Height="650" Width="1200" 
+        Background="#2f5778" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="75"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#9ebed9"
+              VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            
+            <Image Source="images/logo.png" Height="55" Margin="5"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text='Кинотеатр "Премьера"' Foreground="White"
+                       FontSize="34" FontWeight="DemiBold" Grid.Column="1"
+                       HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <Button Height="50" Width="50" Click="BtnClick_Exit"
+                    BorderThickness="0" Background="Transparent"
+                    Grid.Column="2" Margin="10" Visibility="Collapsed"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Name="Btn_Exit">
+                <Image Source="images/Door_Exit.png"/>
+            </Button>
+        </Grid>
+        
         <Frame Source="pages/PincodePage.xaml" NavigationUIVisibility="Hidden"
                Grid.Row="1"/>
     </Grid>

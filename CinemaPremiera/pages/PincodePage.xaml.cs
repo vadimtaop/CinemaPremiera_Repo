@@ -33,6 +33,11 @@ namespace CinemaPremiera.pages
                 if (Tbox_Pincode.Text == TruePincode)
                 {
                     NavigationService.Navigate(new MenuPage());
+
+                    if(Application.Current.MainWindow is MainWindow mainWindow)
+                    {
+                        mainWindow.Btn_Exit.Visibility = Visibility.Visible;
+                    }
                 }
                 else
                 {

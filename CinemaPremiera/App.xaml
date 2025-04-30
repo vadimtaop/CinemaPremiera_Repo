@@ -6,15 +6,15 @@
     <Application.Resources>
 
         <Style x:Key="Btn_Pincode" TargetType="Button">
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="75"/>
+            <Setter Property="Width" Value="75"/>
             <Setter Property="Background" Value="LightSteelBlue"/>
             <Setter Property="BorderBrush" Value="SteelBlue"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontSize" Value="44"/>
             <Style.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="50"/>
+                    <Setter Property="CornerRadius" Value="100"/>
                 </Style>
             </Style.Resources>
         </Style>
