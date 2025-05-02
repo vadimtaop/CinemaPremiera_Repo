@@ -27,7 +27,9 @@
                 <TextBlock Text="Фильтр" HorizontalAlignment="Center"
                            FontSize="22" FontWeight="DemiBold"/>
                 <Button Margin="0 10 0 0" Content="Применить"
-                        Height="25" Width="150" FontSize="16"/>
+                        Height="25" Width="150" FontSize="16"
+                        Click="BtnClick_Apply" Name="Btn_Apply"
+                        IsDefault="True"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1"
@@ -41,7 +43,7 @@
         </Grid>
 
         <DataGrid Grid.Column="2" Background="LightGray" AutoGenerateColumns="False" 
-                  IsReadOnly="True">
+                  IsReadOnly="True" Name="DG_Orders">
             <DataGrid.Resources>
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -51,14 +53,15 @@
                 </Style>-->
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="50"/>
-                <DataGridTextColumn Header="Дата" Width="120"/>
-                <DataGridTextColumn Header="Название фильма" Width="150*"/>
-                <DataGridTextColumn Header="Цена" Width="50"/>
-                <DataGridTextColumn Header="Кол-во" Width="100"/>
-                <DataGridTextColumn Header="Вид оплаты" Width="100"/>
-                <DataGridTextColumn Header="Сумма в чеке" Width="100"/>
-                <DataGridTextColumn Header="Сумма за день" Width="100"/>
+                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Дата" Width="75" Binding="{Binding DateBuy, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                <DataGridTextColumn Header="Название фильма" Width="150*" Binding="{Binding Film.Title}"/>
+                <DataGridTextColumn Header="Дата сеанса" Width="75" Binding="{Binding DateSession, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                <DataGridTextColumn Header="Цена" Width="50" Binding="{Binding PriceList.Price}"/>
+                <DataGridTextColumn Header="Кол-во" Width="100" Binding="{Binding Count}"/>
+                <DataGridTextColumn Header="Сумма в чеке" Width="100" Binding="{Binding CheckSum}"/>
+                <DataGridTextColumn Header="Вид оплаты" Width="100" Binding="{Binding PaymentType.Title}"/>
+                <DataGridTextColumn Header="Примечание" Width="100" Binding="{Binding Note}"/>
             </DataGrid.Columns>
         </DataGrid>
         

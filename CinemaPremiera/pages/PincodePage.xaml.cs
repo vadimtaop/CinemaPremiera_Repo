@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CinemaPremiera.ADO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,11 +27,11 @@ namespace CinemaPremiera.pages
         }
         private void Tbox_Pincode_Tc(object sender, TextChangedEventArgs e)
         {
-            string TruePincode = "1111";
+            int TruePincode = AppData.db.Authorization.FirstOrDefault().Pincode;
 
             if (Tbox_Pincode.Text.Length == 4)
             {
-                if (Tbox_Pincode.Text == TruePincode)
+                if (int.Parse(Tbox_Pincode.Text) == TruePincode)
                 {
                     NavigationService.Navigate(new MenuPage());
 

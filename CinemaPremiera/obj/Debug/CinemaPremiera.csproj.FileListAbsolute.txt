@@ -38,3 +38,9 @@ C:\Users\Vadim\source\repos\NewRepo\CinemaPremiera\CinemaPremiera\obj\Debug\Cine
 C:\Users\Vadim\source\repos\NewRepo\CinemaPremiera\CinemaPremiera\obj\Debug\CinemaPremiera.csproj.CoreCompileInputs.cache
 C:\Users\Vadim\source\repos\NewRepo\CinemaPremiera\CinemaPremiera\obj\Debug\CinemaPremiera.exe
 C:\Users\Vadim\source\repos\NewRepo\CinemaPremiera\CinemaPremiera\obj\Debug\CinemaPremiera.pdb
+C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\obj\Debug\CinemaPremiera_Content.g.cs
+C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\EntityFramework.dll
+C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\EntityFramework.xml
+C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\obj\Debug\CinemaPr.A0704BC4.Up2Date
