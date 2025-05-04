@@ -8,7 +8,7 @@
       d:DesignHeight="575" d:DesignWidth="1200"
       Title="PincodePage">
 
-    <StackPanel Orientation="Vertical" Height="600" Width="1000"
+    <StackPanel Orientation="Vertical" Height="600" Width="1300"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Text="Введите пин-код" FontSize="40"  HorizontalAlignment="Center"
                    FontWeight="DemiBold" Foreground="LightSteelBlue"

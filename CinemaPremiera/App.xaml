@@ -18,6 +18,15 @@
                 </Style>
             </Style.Resources>
         </Style>
-            
+
+        <Style x:Key="Tblock_Filters" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
+
     </Application.Resources>
 </Application>

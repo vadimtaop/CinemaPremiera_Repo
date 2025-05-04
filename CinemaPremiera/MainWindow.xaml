@@ -6,8 +6,14 @@
         xmlns:local="clr-namespace:CinemaPremiera"
         mc:Ignorable="d"
         MinHeight="650" MinWidth="1200" Icon="/images/logo.png"
-        Title='Кинотеатр "Премьера"' Height="650" Width="1200" 
-        Background="#2f5778" WindowStartupLocation="CenterScreen">
+        Title='Кинотеатр "Премьера"' Height="750" Width="1300" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
+            <GradientStop Color="#FF23537D" Offset="0.006"/>
+            <GradientStop Color="#FF092B46" Offset="1"/>
+            <GradientStop Color="#FF275277" Offset="0.5"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
@@ -21,7 +27,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            
+
             <Image Source="images/logo.png" Height="55" Margin="5"
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBlock Text='Кинотеатр "Премьера"' Foreground="White"
@@ -39,7 +45,7 @@
                 <Image Source="images/Door_Exit.png"/>
             </Button>
         </Grid>
-        
+
         <Frame Source="pages/PincodePage.xaml" NavigationUIVisibility="Hidden"
                Grid.Row="1"/>
     </Grid>
