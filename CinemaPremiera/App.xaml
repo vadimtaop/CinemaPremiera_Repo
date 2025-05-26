@@ -27,6 +27,6 @@
         <Style TargetType="DataGridCell">
             <Setter Property="TextBlock.TextAlignment" Value="Center"/>
         </Style>
-
+        
     </Application.Resources>
 </Application>

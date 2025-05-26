@@ -24,11 +24,20 @@ namespace CinemaPremiera.pages
         public PincodePage()
         {
             InitializeComponent();
+            LoadPincodeAsync();
         }
+
+        private async void LoadPincodeAsync()
+        {
+            // Загружаем пин-код асинхронно при создании страницы
+            var truePincode = await Task.Run(() => AppData.db.Authorization.FirstOrDefault()?.Pincode);
+            // Сохраняем в поле класса, чтобы не общаться к БД при каждом нажатии
+            this.TruePincode = truePincode;
+        }
+        private int? TruePincode { get; set; }
+
         private void Tbox_Pincode_Tc(object sender, TextChangedEventArgs e)
         {
-            int TruePincode = AppData.db.Authorization.FirstOrDefault().Pincode;
-
             if (Tbox_Pincode.Text.Length == 4)
             {
                 if (int.Parse(Tbox_Pincode.Text) == TruePincode)
