@@ -93,6 +93,7 @@ namespace CinemaPremiera.pages
 
         private void BtnClick_ResetFilters(object sender, RoutedEventArgs e)
         {
+            Tbox_Search.Text = "";
             Dpicker_DateBuyS.Text = "";
             Dpicker_DateBuyPo.Text = "";
             Tbox_Film.Text = "";

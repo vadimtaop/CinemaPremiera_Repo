@@ -24,39 +24,78 @@ namespace CinemaPremiera.pages
         public PincodePage()
         {
             InitializeComponent();
-            LoadPincodeAsync();
+            _ = LoadPincodeAsync();
         }
 
-        private async void LoadPincodeAsync()
+        private async Task LoadPincodeAsync()
         {
-            // Загружаем пин-код асинхронно при создании страницы
-            var truePincode = await Task.Run(() => AppData.db.Authorization.FirstOrDefault()?.Pincode);
-            // Сохраняем в поле класса, чтобы не общаться к БД при каждом нажатии
-            this.TruePincode = truePincode;
+            try
+            {
+                // Пересоздаем контекст БД
+                var db = new CinemaPremieraDBEntities();
+
+                var truePincode = await Task.Run(() => db.Authorization.AsNoTracking().FirstOrDefault()?.Pincode);
+
+                this.TruePincode = truePincode;
+                db.Dispose(); // Закрываем подключение
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка загрузки пин-кода: {ex.Message}", "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+
+                this.TruePincode = null;
+            }
         }
         private int? TruePincode { get; set; }
 
-        private void Tbox_Pincode_Tc(object sender, TextChangedEventArgs e)
+        private async void Tbox_Pincode_Tc(object sender, TextChangedEventArgs e)
         {
             if (Tbox_Pincode.Text.Length == 4)
             {
-                if (int.Parse(Tbox_Pincode.Text) == TruePincode)
+                try
                 {
-                    NavigationService.Navigate(new MenuPage());
+                    // Показываем индикатор загрузки
+                    Spanel_Loading.Visibility = Visibility.Visible;
+                    Tbox_Pincode.IsEnabled = false;
 
-                    if(Application.Current.MainWindow is MainWindow mainWindow)
+                    // Ждем завершения загрузки пин-кода (если еще не загружен)
+                    if (TruePincode == null)
                     {
-                        mainWindow.Btn_Exit.Visibility = Visibility.Visible;
+                        await LoadPincodeAsync();
+                    }
+
+                    // Искусственная задержка
+                    await Task.Delay(300);
+
+                    if (int.TryParse(Tbox_Pincode.Text, out int enteredPin) && enteredPin == TruePincode)
+                    {
+                        NavigationService.Navigate(new MenuPage());
+
+                        if (Application.Current.MainWindow is MainWindow mainWindow)
+                        {
+                            mainWindow.Btn_Exit.Visibility = Visibility.Visible;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Введен неверный PIN-код.\nПовторите попытку.", "Ошибка",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+
+                        Tbox_Pincode.Clear();
                     }
                 }
-                else
+                finally
                 {
-                    MessageBox.Show("Введен неверный PIN-код.\nПовторите попытку.", "Ошибка",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-
-                    Tbox_Pincode.Clear();
+                    // Скрываем индикатор загрузки
+                    Spanel_Loading.Visibility = Visibility.Collapsed;
+                    Tbox_Pincode.IsEnabled = true;
                 }
             }
+
+
+
+
         }
 
         // Кнопки с цифрами

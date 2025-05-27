@@ -4,24 +4,34 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CinemaPremiera.pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="575" d:DesignWidth="1200"
-      Title="PincodePage">
+      mc:Ignorable="d"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      d:DesignHeight="600" d:DesignWidth="1200"
+      Title="PincodePage" Background="#FFF0F0FF">
 
     <StackPanel Orientation="Vertical" Height="600" Width="1300"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="Введите пин-код" FontSize="40"  HorizontalAlignment="Center"
-                   FontWeight="DemiBold" Foreground="LightSteelBlue"
-                   Margin="0 30 0 0">
-            <TextBlock.Effect>
-                <DropShadowEffect Color="SteelBlue" BlurRadius="2" ShadowDepth="0"/>
-            </TextBlock.Effect>
-        </TextBlock>
+        <Grid HorizontalAlignment="Center" Margin="0 20 0 0">
+            <TextBlock Text="Введите пин-код" FontSize="40" HorizontalAlignment="Center"
+                       FontWeight="DemiBold" Foreground="SlateBlue" Margin="0 2 0 0"/>
+            <TextBlock Text="Введите пин-код" FontSize="40" HorizontalAlignment="Center"
+                   FontWeight="DemiBold" Foreground="White">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="3" Color="SlateBlue" Direction="90" ShadowDepth="0"/>
+                </TextBlock.Effect>
+            </TextBlock>
+        </Grid>
         <TextBox Height="45" Width="200" Margin="0 20 0 0"
                      TextAlignment="Center" FontSize="34"
                      Name="Tbox_Pincode" MaxLength="4"
-                     IsReadOnly="True" BorderBrush="SteelBlue"
-                     TextChanged="Tbox_Pincode_Tc"/>
+                     IsReadOnly="True" BorderBrush="SlateBlue"
+                     TextChanged="Tbox_Pincode_Tc" BorderThickness="2"/>
 
         <UniformGrid Rows="4" Columns="3" Width="275" Height="375" Margin="0 20 0 0">
             <Button Click="BtnClick_One" Content="1" Style="{StaticResource Btn_Pincode}"/>
@@ -38,5 +48,15 @@
             <Button Click="BtnClick_Backspace" Content="&lt;" Style="{StaticResource Btn_Pincode}"/>
         </UniformGrid>
 
+        <StackPanel HorizontalAlignment="Center" Margin="0 5 0 0"
+                    Name="Spanel_Loading" Visibility="Collapsed">
+            <TextBlock Text="Проверка пин-кода..." FontSize="22" Name="Tblock_Loading"
+                       HorizontalAlignment="Center"/>
+            <ProgressBar IsIndeterminate="True" Margin="0 10 0 0"
+                         Width="200" Height="20" Name="Pbar_Loading"
+                         Background="White" Foreground="SlateBlue"
+                         BorderBrush="SlateBlue"/>
+        </StackPanel>
+        
     </StackPanel>
 </Page>

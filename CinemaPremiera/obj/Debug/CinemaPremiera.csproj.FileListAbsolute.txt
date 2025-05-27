@@ -69,3 +69,11 @@ C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\System.Buffe
 C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\System.Memory.xml
 C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\MaterialDesignColors.dll
+C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\Vadim\source\repos\CinemaPremiera\CinemaPremiera\bin\Debug\Microsoft.Xaml.Behaviors.xml

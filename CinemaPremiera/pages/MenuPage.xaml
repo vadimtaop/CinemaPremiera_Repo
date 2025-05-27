@@ -4,8 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CinemaPremiera.pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="1075" d:DesignWidth="1300"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      d:DesignHeight="875" d:DesignWidth="1300"
       Title="MenuPage">
 
     <Grid Margin="10">
@@ -15,98 +22,125 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" Background="LightGray">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="500*"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="200*"/>
-            </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Background="#FFCACAFD">
 
-            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                <StackPanel Grid.Row="0"
-                        HorizontalAlignment="Center" VerticalAlignment="Center">
-                
-                <TextBlock Text="Фильтр" HorizontalAlignment="Center"
-                           FontSize="22" FontWeight="DemiBold"/>
-                <TextBlock Text="Дата покупки (с):" Margin="0 10 0 0"
-                           Style="{StaticResource Tblock_Filters}"/>
-                <DatePicker Height="25" Width="150" Margin="0 10 0 0"
-                            Name="Dpicker_DateBuyS" SelectedDateChanged="DateBuyS_SelectedDateChanged"/>
-                <TextBlock Text="Дата покупки (по):" Margin="0 10 0 0"
-                           Style="{StaticResource Tblock_Filters}"/>
-                <DatePicker Height="25" Width="150" Margin="0 10 0 0" 
-                            Name="Dpicker_DateBuyPo" IsEnabled="False"
-                            SelectedDateChanged="DateBuyPo_SelectedDateChanged"/>
-                <TextBlock Text="Название фильма:" Margin="0 10 0 0" 
-                           Style="{StaticResource Tblock_Filters}"/>
-                <TextBox Height="25" Width="150" Margin="0 10 0 0" Name="Tbox_Film"/>
-                <TextBlock Text="Дата сеанса" Margin="0 10 0 0"
-                           Style="{StaticResource Tblock_Filters}"/>
-                <DatePicker Height="25" Width="150" Margin="0 10 0 0" Name="Dpicker_DateSession"/>
-                <TextBlock Text="Цена:" Margin="0 10 0 0" 
-                           Style="{StaticResource Tblock_Filters}"/>
-                <ComboBox Height="25" Width="150" Margin="0 10 0 0"
-                          Name="Сbox_PriceList" SelectedIndex="0">
-                    <ComboBoxItem Content="Все"/>
-                    <ComboBoxItem Content="170 руб." Tag="1"/>
-                    <ComboBoxItem Content="200 руб." Tag="2"/>
-                    <ComboBoxItem Content="230 руб." Tag="3"/>
-                    <ComboBoxItem Content="250 руб." Tag="4"/>
-                    <ComboBoxItem Content="270 руб." Tag="5"/>
-                </ComboBox>
-                <TextBlock Text="Количество:" Margin="0 10 0 0" 
-                           Style="{StaticResource Tblock_Filters}"/>
-                <TextBox Height="25" Width="150" Margin="0 10 0 0" Name="Tbox_Count"/>
-                <TextBlock Text="Сумма в чеке:" Margin="0 10 0 0" 
-                           Style="{StaticResource Tblock_Filters}"/>
-                <TextBox Height="25" Width="150" Margin="0 10 0 0" Name="Tbox_CheckSum"/>
-                <TextBlock Text="Вид оплаты:" Margin="0 10 0 0" 
-                           Style="{StaticResource Tblock_Filters}"/>
-                <ComboBox Height="25" Width="150" Margin="0 10 0 0"
-                          Name="Сbox_PaymentType" SelectedIndex="0">
-                    <ComboBoxItem Content="Все"/>
-                    <ComboBoxItem Content="Банковская карта" Tag="1"/>
-                    <ComboBoxItem Content="Внешняя оплата" Tag="2"/>
-                    <ComboBoxItem Content="Пушкинская карта" Tag="3"/>
-                </ComboBox>
-                <TextBlock Text="Примечание:" Margin="0 10 0 0" 
-                           Style="{StaticResource Tblock_Filters}"/>
-                <TextBox Height="25" Width="150" Margin="0 10 0 0" Name="Tbox_Note"/>
+            <TabControl TabStripPlacement="Top" Background="#FFCACAFD">
+                <TabItem Header="Фильтры">
 
-                <Button Margin="0 10 0 0" Content="Применить"
-                        Height="25" Width="150" FontSize="16"
-                        Click="BtnClick_Apply" Name="Btn_Apply"
-                        IsDefault="True"/>
-                    <Button Margin="0 10 0 0" Content="Сбросить"
-                        Height="25" Width="150" FontSize="16"
-                        Click="BtnClick_ResetFilters" Name="Btn_ResetFilters"/>
-                </StackPanel>
-            </ScrollViewer>
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
 
-            <StackPanel Grid.Row="1"
-                        HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="Поиск" HorizontalAlignment="Center"
-                           FontSize="22" FontWeight="DemiBold"/>
-                <TextBox x:Name="Tbox_Search" Margin="0 10 0 0"
-                         Height="25" Width="150" FontSize="16"/>
-            </StackPanel>
+                        <Grid>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top"
+                                        Margin="0 20 0 0">
+                                <TextBlock Text="Фильтр" HorizontalAlignment="Center"
+                                       FontSize="22" FontWeight="DemiBold"/>
+                                <TextBlock Text="Общий поиск" Margin="0 10 0 0"
+                                       Style="{StaticResource Tblock_Filters}"/>
+                                <TextBox x:Name="Tbox_Search" Margin="0 10 0 0"
+                                     Height="25" Width="150" FontSize="16"
+                                     Style="{StaticResource Tbox_Filters}"/>
+                                <TextBlock Text="Дата покупки (с):" Margin="0 10 0 0"
+                                       Style="{StaticResource Tblock_Filters}"/>
+                                <DatePicker Height="25" Width="150" Margin="0 10 0 0"
+                                        Name="Dpicker_DateBuyS" SelectedDateChanged="DateBuyS_SelectedDateChanged"
+                                        Style="{StaticResource Dpicker_Filters}"/>
+                                <TextBlock Text="Дата покупки (по):" Margin="0 10 0 0"
+                                       Style="{StaticResource Tblock_Filters}"/>
+                                <DatePicker Height="25" Width="150" Margin="0 10 0 0" 
+                                        Name="Dpicker_DateBuyPo" IsEnabled="False"
+                                        SelectedDateChanged="DateBuyPo_SelectedDateChanged"
+                                        Style="{StaticResource Dpicker_Filters}"/>
+                                <TextBlock Text="Название фильма:" Margin="0 10 0 0" 
+                                       Style="{StaticResource Tblock_Filters}"/>
+                                <TextBox Height="25" Width="150" Margin="0 10 0 0" Name="Tbox_Film"
+                                     Style="{StaticResource Tbox_Filters}"/>
+                                <TextBlock Text="Дата сеанса" Margin="0 10 0 0"
+                                       Style="{StaticResource Tblock_Filters}"/>
+                                <DatePicker Height="25" Width="150" Margin="0 10 0 0" Name="Dpicker_DateSession"
+                                        Style="{StaticResource Dpicker_Filters}"/>
+                                <TextBlock Text="Цена:" Margin="0 10 0 0" 
+                                       Style="{StaticResource Tblock_Filters}"/>
+                                <ComboBox Height="25" Width="150" Margin="0 10 0 0"
+                                          Name="Сbox_PriceList" SelectedIndex="0"
+                                          Style="{StaticResource Cbox_Filters}">
+                                    <ComboBoxItem Content="Все"/>
+                                    <ComboBoxItem Content="170 руб." Tag="1"/>
+                                    <ComboBoxItem Content="200 руб." Tag="2"/>
+                                    <ComboBoxItem Content="230 руб." Tag="3"/>
+                                    <ComboBoxItem Content="250 руб." Tag="4"/>
+                                    <ComboBoxItem Content="270 руб." Tag="5"/>
+                                </ComboBox>
+                                <TextBlock Text="Количество:" Margin="0 10 0 0" 
+                                       Style="{StaticResource Tblock_Filters}"/>
+                                <TextBox Height="25" Width="150" Margin="0 10 0 0" Name="Tbox_Count"
+                                     Style="{StaticResource Tbox_Filters}"/>
+                                <TextBlock Text="Сумма в чеке:" Margin="0 10 0 0" 
+                                       Style="{StaticResource Tblock_Filters}"/>
+                                <TextBox Height="25" Width="150" Margin="0 10 0 0" Name="Tbox_CheckSum"
+                                     Style="{StaticResource Tbox_Filters}"/>
+                                <TextBlock Text="Вид оплаты:" Margin="0 10 0 0" 
+                                       Style="{StaticResource Tblock_Filters}"/>
+                                <ComboBox Height="25" Width="150" Margin="0 10 0 0"
+                                      Name="Сbox_PaymentType" SelectedIndex="0">
+                                    <ComboBoxItem Content="Все"/>
+                                    <ComboBoxItem Content="Банковская карта" Tag="1"/>
+                                    <ComboBoxItem Content="Внешняя оплата" Tag="2"/>
+                                    <ComboBoxItem Content="Пушкинская карта" Tag="3"/>
+                                </ComboBox>
+                                <TextBlock Text="Примечание:" Margin="0 10 0 0" 
+                                       Style="{StaticResource Tblock_Filters}"/>
+                                <TextBox Height="25" Width="150" Margin="0 10 0 0" Name="Tbox_Note"
+                                     Style="{StaticResource Tbox_Filters}"/>
 
-            <StackPanel Grid.Row="2">
-                <TextBlock Text="Сохранить" HorizontalAlignment="Center"
-                           FontSize="22" FontWeight="DemiBold"/>
-                <Button Height="75" Width="150" FontSize="16" Margin="0 10 0 0"
-                        Click="BtnClick_ExportExcel_Full" Name="Btn_ExportExcel_Full">
-                    <TextBlock TextWrapping="Wrap" Text="Экспорт всех данных (Excel)" TextAlignment="Center"/>
-                </Button>
-                <Button Height="75" Width="150" FontSize="16" Margin="0 10 0 0"
-                        Click="BtnClick_ExportExcel_Filter" Name="Btn_ExportExcel_Filter">
-                    <TextBlock TextWrapping="Wrap" Text="Экспорт фильтрованных данных (Excel)" TextAlignment="Center"/>
-                </Button>
-            </StackPanel>
+
+                            </StackPanel>
+
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 20">
+                                <Button Margin="0 10 0 0" Content="Применить"
+                                    Height="25" Width="150" FontSize="16"
+                                    Click="BtnClick_Apply" Name="Btn_Apply"
+                                    IsDefault="True" Style="{StaticResource Btn_Filters}"/>
+                                <Button Margin="0 10 0 0" Content="Сбросить"
+                                    Height="25" Width="150" FontSize="16"
+                                    Click="BtnClick_ResetFilters" Name="Btn_ResetFilters"
+                                    Style="{StaticResource Btn_Filters}"/>
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+
+                </TabItem>
+                <TabItem Header="Экспорт">
+
+                    <StackPanel>
+                        <TextBlock Text="Сохранить" HorizontalAlignment="Center"
+                                   FontSize="22" FontWeight="DemiBold"/>
+                        <Button Height="75" Width="150" FontSize="16" Margin="0 10 0 0"
+                                Click="BtnClick_ExportExcel_Full" Name="Btn_ExportExcel_Full"
+                                Style="{StaticResource Btn_Filters}">
+                            <TextBlock TextWrapping="Wrap" Text="Экспорт всех данных (Excel)" 
+                                       TextAlignment="Center"/>
+                        </Button>
+                        <Button Height="75" Width="150" FontSize="16" Margin="0 10 0 0"
+                                Click="BtnClick_ExportExcel_Filter" Name="Btn_ExportExcel_Filter"
+                                Style="{StaticResource Btn_Filters}">
+                            <TextBlock TextWrapping="Wrap" Text="Экспорт фильтрованных данных (Excel)" 
+                                       TextAlignment="Center"/>
+                        </Button>
+                    </StackPanel>
+
+                </TabItem>
+
+
+                <TabItem Header="Редактор">
+                    
+                    
+                    
+                </TabItem>
+            </TabControl>
 
         </Grid>
 
-        <DataGrid Grid.Column="2" Background="LightGray" AutoGenerateColumns="False" 
+        <DataGrid Grid.Column="2" Background="#FFCACAFD" AutoGenerateColumns="False" 
                   IsReadOnly="True" Name="DG_Orders">
             <DataGrid.Resources>
                 <Style TargetType="DataGridColumnHeader">
@@ -125,6 +159,6 @@
                 <DataGridTextColumn Header="Примечание" Width="200*" Binding="{Binding Note}"/>
             </DataGrid.Columns>
         </DataGrid>
-        
+
     </Grid>
 </Page>

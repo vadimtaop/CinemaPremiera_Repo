@@ -5,15 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CinemaPremiera"
         mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         MinHeight="650" MinWidth="1200" Icon="/images/logo.png"
-        Title='Кинотеатр "Премьера"' Height="750" Width="1300" WindowStartupLocation="CenterScreen">
-    <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
-            <GradientStop Color="#FF23537D" Offset="0.006"/>
-            <GradientStop Color="#FF092B46" Offset="1"/>
-            <GradientStop Color="#FF275277" Offset="0.5"/>
-        </LinearGradientBrush>
-    </Window.Background>
+        Title='Кинотеатр "Премьера"' Height="750" Width="1300" 
+        WindowStartupLocation="CenterScreen" Background="#FFF0F0FF"
+        WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
@@ -21,20 +23,14 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"
-              VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
-                    <GradientStop Color="#9ebed9"/>
-                    <GradientStop Color="#FFBCE0FF" Offset="1"/>
-                </LinearGradientBrush>
-            </Grid.Background>
+              VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="SlateBlue">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="110"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
-            <Image Source="images/logo.png" Height="55" Margin="5"
+            <Image Source="images/logo.png" Height="70" Width="110" Margin="10 0 0 0"
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBlock Text='Кинотеатр "Премьера"' Foreground="White"
                        FontSize="34" FontWeight="DemiBold" Grid.Column="1"
