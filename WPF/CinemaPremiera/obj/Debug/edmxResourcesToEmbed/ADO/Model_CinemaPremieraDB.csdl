@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CinemaPremieraDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Authorization">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pincode" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Film">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Film" FromRole="Film" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateBuy" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ID_Film" Type="Int32" Nullable="false" />
+    <Property Name="DateSession" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ID_PriceList" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+    <Property Name="CheckSum" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="ID_PaymentType" Type="Int32" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Film" Relationship="Self.FK_Orders_Film" FromRole="Orders" ToRole="Film" />
+    <NavigationProperty Name="PaymentType" Relationship="Self.FK_Orders_PaymentType" FromRole="Orders" ToRole="PaymentType" />
+    <NavigationProperty Name="PriceList" Relationship="Self.FK_Orders_PriceList" FromRole="Orders" ToRole="PriceList" />
+  </EntityType>
+  <EntityType Name="PaymentType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_PaymentType" FromRole="PaymentType" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="PriceList">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Price" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_PriceList" FromRole="PriceList" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Orders_Film">
+    <End Role="Film" Type="Self.Film" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Film">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ID_Film" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_PaymentType">
+    <End Role="PaymentType" Type="Self.PaymentType" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ID_PaymentType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_PriceList">
+    <End Role="PriceList" Type="Self.PriceList" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PriceList">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ID_PriceList" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CinemaPremieraDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Authorization" EntityType="Self.Authorization" />
+    <EntitySet Name="Film" EntityType="Self.Film" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" />
+    <EntitySet Name="PaymentType" EntityType="Self.PaymentType" />
+    <EntitySet Name="PriceList" EntityType="Self.PriceList" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Orders_Film" Association="Self.FK_Orders_Film">
+      <End Role="Film" EntitySet="Film" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_PaymentType" Association="Self.FK_Orders_PaymentType">
+      <End Role="PaymentType" EntitySet="PaymentType" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_PriceList" Association="Self.FK_Orders_PriceList">
+      <End Role="PriceList" EntitySet="PriceList" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
