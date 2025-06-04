@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CinemaPremiera.windows"
         mc:Ignorable="d"
-        Title='Кинотеатр "Премьера"' Height="700" Width="450"
+        Title='Кинотеатр "Премьера"' Height="650" Width="450"
         Background="#FFF0F0FF" WindowStartupLocation="CenterScreen"
         Icon="../images/logo.png">
     <Grid>
@@ -112,11 +112,17 @@
                             Grid.Column="0" HorizontalAlignment="Right"/>
 
                     <Button Margin="10 0 0 0" Content="Добавить"
-                        Height="25" Width="150" FontSize="16"
-                        Click="BtnClick_Add" Name="Btn_Add"
-                        Style="{StaticResource Btn_Filters}"
+                            Height="25" Width="150" FontSize="16"
+                            Click="BtnClick_Add" Name="Btn_Add"
+                            Style="{StaticResource Btn_Filters}"
                             Grid.Column="1" HorizontalAlignment="Left"/>
-                    
+
+                    <Button Margin="10 0 0 0" Content="Сохранить"
+                            Height="25" Width="150" FontSize="16"
+                            Click="BtnClick_Save" Name="Btn_Save"
+                            Style="{StaticResource Btn_Filters}"
+                            Grid.Column="1" HorizontalAlignment="Left"
+                            Visibility="Collapsed"/>
                 </Grid>
             </StackPanel>
 

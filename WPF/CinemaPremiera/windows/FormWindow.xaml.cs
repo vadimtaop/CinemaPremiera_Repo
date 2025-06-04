@@ -118,7 +118,59 @@ namespace CinemaPremiera.windows
             return int.TryParse(Tbox_Count.Text, out int count) ? count : 0;
         }
 
+        public int EditingOrderId { get; set; }
+        private void BtnClick_Save(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Вы уверены, что хотите внести изменения?", "Предупреждение",
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    // Получаем ID редактируемого заказа
+                    int orderID = this.EditingOrderId;
 
+                    // Находим заказ в БД
+                    var order = AppData.db.Orders.FirstOrDefault(o => o.ID == orderID);
+
+                    // Сохраняем изменения
+                    if (order != null)
+                    {
+                        order.DateBuy = Dpicker_DateBuy.SelectedDate.Value;
+                        order.ID_Film = (int)Cbox_Film.SelectedValue;
+                        order.DateSession = Dpicker_DateSession.SelectedDate.Value;
+                        if (Cbox_PriceList.SelectedItem is PriceList itemPriceList)
+                        {
+                            order.ID_PriceList = itemPriceList.ID;
+                        }
+                        else
+                        {
+                            throw new Exception("Не выбрана цена.");
+                        }
+                        order.Count = int.Parse(Tbox_Count.Text);
+                        order.CheckSum = decimal.Parse(Tbox_CheckSum.Text);
+                        if (Cbox_PaymentType.SelectedItem is PaymentType itemPaymentType)
+                        {
+                            order.ID_PaymentType = itemPaymentType.ID;
+                        }
+                        else
+                        {
+                            throw new Exception("Не выбран способ оплаты.");
+                        }
+                        order.Note = Tbox_Note.Text;
+
+                        AppData.db.SaveChanges();
+
+                        // Закрываем окно
+                        this.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
         // Загружаем все данные в ComboBox из БД
         private void LoadFilm()

@@ -112,7 +112,7 @@
 
 
                 <TabItem Header="Редактор">
-                    
+
                     <Grid>
                         <Button Margin="0 0 0 0" Content="Добавить"
                                     Height="25" Width="150" FontSize="16"
@@ -127,37 +127,61 @@
                                     Click="BtnClick_Edit" Name="Btn_Edit"
                                     Style="{StaticResource Btn_Filters}"/>
                     </Grid>
-                    
+
                 </TabItem>
             </TabControl>
 
         </Grid>
-
+        
         <DataGrid Grid.Column="2" Background="#FFCACAFD" AutoGenerateColumns="False" 
-                  IsReadOnly="True" Name="DG_Orders">
+                  IsReadOnly="True" Name="DG_Orders" HorizontalScrollBarVisibility="Auto"
+                  AlternationCount="2" AlternatingRowBackground="#f2f0fb" 
+                  RowBackground="White">
             <DataGrid.Resources>
+                <!--Текст по центру-->
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Background" Value="DarkSlateBlue"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Regular"/>
                 </Style>
+                <!--Изменение фона заголовков-->
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTemplateColumn Width="30">
+                <DataGridTextColumn Header="ID" MinWidth="40" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Дата покупки" MinWidth="85" Binding="{Binding DateBuy, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                <DataGridTextColumn Header="Название фильма" MinWidth="150" Width="150*" Binding="{Binding Film.Title}"/>
+                <DataGridTextColumn Header="Дата сеанса" MinWidth="85" Binding="{Binding DateSession, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                <DataGridTextColumn Header="Цена" MinWidth="50" Binding="{Binding PriceList.Price}"/>
+                <DataGridTextColumn Header="Кол-во" MinWidth="50" Binding="{Binding Count}"/>
+                <DataGridTextColumn Header="Сумма в чеке" MinWidth="90" Binding="{Binding CheckSum}"/>
+                <DataGridTextColumn Header="Вид оплаты" MinWidth="130" Binding="{Binding PaymentType.Title}"/>
+                <DataGridTextColumn Header="Примечание" MinWidth="100" Width="100*" Binding="{Binding Note}"/>
+                <DataGridTemplateColumn MinWidth="75" MaxWidth="75" Width="75">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center"
-                                      Name="DeleteCheckBox"/>
+                            <DockPanel Width="75">
+                                <Button VerticalAlignment="Center" HorizontalAlignment="Left"
+                                        Width="20" Height="20"
+                                        Name="Btn_Edit" Click="BtnClick_Edit"
+                                        Background="#FFCACAFD" Margin="2.5 0 2.5 0">
+                                    <Image Source="../images/Pencil.png" Height="15" Width="15"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Button>
+                                <Button VerticalAlignment="Center" HorizontalAlignment="Center"
+                                        Width="20" Height="20"
+                                        Name="Btn_TrashDelete" Click="BtnClick_TrashDelete"
+                                        Background="#f02622" Margin="2.5 0 2.5 0">
+                                    <Image Source="../images/Trash.png" Height="15" Width="15"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Button>
+                                <CheckBox HorizontalAlignment="Right" VerticalAlignment="Center"
+                                          Name="DeleteCheckBox" Width="20" Height="20"
+                                          Margin="2.5 0 2.5 0"/>
+                            </DockPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding ID}"/>
-                <DataGridTextColumn Header="Дата покупки" Width="75" Binding="{Binding DateBuy, StringFormat=\{0:dd.MM.yyyy\}}"/>
-                <DataGridTextColumn Header="Название фильма" Width="150*" Binding="{Binding Film.Title}"/>
-                <DataGridTextColumn Header="Дата сеанса" Width="75" Binding="{Binding DateSession, StringFormat=\{0:dd.MM.yyyy\}}"/>
-                <DataGridTextColumn Header="Цена" Width="50" Binding="{Binding PriceList.Price}"/>
-                <DataGridTextColumn Header="Кол-во" Width="50" Binding="{Binding Count}"/>
-                <DataGridTextColumn Header="Сумма в чеке" Width="90" Binding="{Binding CheckSum}"/>
-                <DataGridTextColumn Header="Вид оплаты" Width="130" Binding="{Binding PaymentType.Title}"/>
-                <DataGridTextColumn Header="Примечание" Width="200*" Binding="{Binding Note}"/>
             </DataGrid.Columns>
         </DataGrid>
 

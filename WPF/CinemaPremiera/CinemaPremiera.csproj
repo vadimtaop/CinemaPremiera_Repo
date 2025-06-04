@@ -242,6 +242,8 @@
       <DependentUpon>Model_CinemaPremieraDB.edmx</DependentUpon>
       <LastGenOutput>Model_CinemaPremieraDB.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\Trash.png" />
+    <Resource Include="images\Pencil.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

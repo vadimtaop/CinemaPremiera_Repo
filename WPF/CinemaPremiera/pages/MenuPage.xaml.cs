@@ -411,9 +411,45 @@ namespace CinemaPremiera.pages
         private void BtnClick_Add(object sender, RoutedEventArgs e)
         {
             FormWindow formWindow = new FormWindow();
-            formWindow.Show();
+            formWindow.ShowDialog();
         }
+        private void BtnClick_TrashDelete(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Получаем текущий заказ из строки, где находится кнопка
+                var button = sender as Button;
+                var order = button.DataContext as Orders;
 
+                if (order == null)
+                {
+                    MessageBox.Show("Не удалось получить данные заказа для удаления.", "Ошибка",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Подтверждение удаления
+                var result = MessageBox.Show($"Вы действительно хотите удалить заказ №{order.ID}?",
+                    "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+
+                // Удаляем заказ
+                AppData.db.Orders.Remove(order);
+                AppData.db.SaveChanges();
+
+                MessageBox.Show("Заказ успешно удален.", "Информация",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
         private void BtnClick_Delete(object sender, RoutedEventArgs e)
         {
             var ordersToDelete = new List<Orders>();
@@ -484,7 +520,47 @@ namespace CinemaPremiera.pages
 
         private void BtnClick_Edit(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                // Получаем объект данных из строки, где находится кнопка
+                var button = sender as Button;
+                var order = button.DataContext as Orders;
 
+                if (order == null)
+                {
+                    MessageBox.Show("Не удалось получить данные заказа.", "Ошибка",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Создаем и настраиваем окно редактирования
+
+                var editWindow = new FormWindow();
+
+                // Передаем ID заказа, который редактируется
+                editWindow.EditingOrderId = order.ID;
+
+                // Заполняем поля
+                editWindow.Dpicker_DateBuy.SelectedDate = order.DateBuy;
+                editWindow.Cbox_Film.SelectedValue = order.ID_Film;
+                editWindow.Dpicker_DateSession.SelectedDate = order.DateSession;
+                editWindow.Cbox_PriceList.SelectedValue = order.ID_PriceList;
+                editWindow.Tbox_Count.Text = order.Count.ToString();
+                editWindow.Cbox_PaymentType.SelectedValue = order.ID_PaymentType;
+                editWindow.Tbox_Note.Text = order.Note.ToString();
+
+                // Скрываем кнопку "добавить" и показываем кнопку "сохранить"
+                editWindow.Btn_Add.Visibility = Visibility.Collapsed;
+                editWindow.Btn_Save.Visibility = Visibility.Visible;
+
+                // Открываем окно
+                editWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка: " + ex.Message , "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         // Загружаем все данные в ComboBox из БД
