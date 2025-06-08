@@ -74,7 +74,7 @@ namespace CinemaPremiera.pages
 
                         if (Application.Current.MainWindow is MainWindow mainWindow)
                         {
-                            mainWindow.Btn_Exit.Visibility = Visibility.Visible;
+                            mainWindow.Btn_Menu.Visibility = Visibility.Visible;
                         }
                     }
                     else

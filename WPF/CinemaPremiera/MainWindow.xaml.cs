@@ -35,5 +35,17 @@ namespace CinemaPremiera
             Process.Start(applicationPath);
             Application.Current.Shutdown();
         }
+        private void BtnClick_Menu(object sender, RoutedEventArgs e)
+        {
+            Border_Menu.Visibility = Visibility.Visible;
+        }
+        private void Window_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Если клик был не по Spanel_Menu и не по Btn_Menu, то скрываем панель
+            if (!Border_Menu.IsMouseOver && !Btn_Menu.IsMouseOver)
+            {
+                Border_Menu.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

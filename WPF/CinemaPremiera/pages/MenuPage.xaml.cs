@@ -624,5 +624,117 @@ namespace CinemaPremiera.pages
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+
+
+        // Импорт данных из таблицы Excel
+        private void BtnClick_ImportExcel(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var openFileDialog = new OpenFileDialog
+                {
+                    Filter = "Excel files (*.xlsx)|*.xlsx",
+                    Title = "Выберите файл Excel для импорта"
+                };
+
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    using (var workbook = new XLWorkbook(openFileDialog.FileName))
+                    {
+                        var worksheet = workbook.Worksheet(1);
+                        var rows = worksheet.RowsUsed().Skip(1);
+
+                        var importedOrders = new List<Orders>();
+
+                        foreach (var row in rows)
+                        {
+                            try
+                            {
+                                // Безопасное чтение данных
+                                var order = new Orders
+                                {
+                                    DateBuy = DateTime.Parse(row.Cell(2).Value.ToString()),
+                                    Film = GetOrCreateFilm(row.Cell(3).Value.ToString()),
+                                    DateSession = DateTime.Parse(row.Cell(4).Value.ToString()),
+                                    PriceList = GetPriceList(decimal.Parse(row.Cell(5).Value.ToString())),
+                                    Count = int.Parse(row.Cell(6).Value.ToString()),
+                                    CheckSum = decimal.Parse(row.Cell(7).Value.ToString()),
+                                    PaymentType = GetOrCreatePaymentType(row.Cell(8).Value.ToString()),
+                                    Note = row.Cell(9).Value.ToString() ?? string.Empty
+                                };
+
+                                importedOrders.Add(order);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show($"Ошибка в строке {row.RowNumber()}: {ex.Message}\n" +
+                                             $"Проверьте правильность данных в этой строке.",
+                                             "Ошибка импорта",
+                                             MessageBoxButton.OK,
+                                             MessageBoxImage.Error);
+                                return;
+                            }
+                        }
+
+                        if (importedOrders.Any())
+                        {
+                            AppData.db.Orders.AddRange(importedOrders);
+                            AppData.db.SaveChanges();
+
+                            MessageBox.Show($"Успешно импортировано {importedOrders.Count} записей",
+                                          "Импорт завершен",
+                                          MessageBoxButton.OK,
+                                          MessageBoxImage.Information);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка импорта: {ex.Message}",
+                              "Ошибка",
+                              MessageBoxButton.OK,
+                              MessageBoxImage.Error);
+            }
+        }
+
+        // Вспомогательные методы для работы с связанными таблицами
+        private Film GetOrCreateFilm(string title)
+        {
+            var film = AppData.db.Film.FirstOrDefault(f => f.Title == title);
+            if (film == null)
+            {
+                film = new Film { Title = title };
+                AppData.db.Film.Add(film);
+                AppData.db.SaveChanges();
+            }
+            return film;
+        }
+
+        private PriceList GetPriceList(decimal price)
+        {
+            var priceItem = AppData.db.PriceList.FirstOrDefault(p => p.Price == price);
+
+            if (priceItem == null)
+            {
+                throw new Exception($"Тариф с ценой {price} не найден в базе данных. " +
+                                  "Добавьте тариф вручную перед импортом.");
+            }
+
+            return priceItem;
+        }
+
+        private PaymentType GetOrCreatePaymentType(string title)
+        {
+            var paymentType = AppData.db.PaymentType.FirstOrDefault(p => p.Title == title);
+            if (paymentType == null)
+            {
+                paymentType = new PaymentType { Title = title };
+                AppData.db.PaymentType.Add(paymentType);
+                AppData.db.SaveChanges();
+            }
+            return paymentType;
+        }
     }
 }

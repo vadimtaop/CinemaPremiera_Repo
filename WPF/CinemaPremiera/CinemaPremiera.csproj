@@ -242,6 +242,10 @@
       <DependentUpon>Model_CinemaPremieraDB.edmx</DependentUpon>
       <LastGenOutput>Model_CinemaPremieraDB.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\Schedule.png" />
+    <Resource Include="images\Film.png" />
+    <Resource Include="images\Order.png" />
+    <Resource Include="images\ThreeLines.png" />
     <Resource Include="images\Trash.png" />
     <Resource Include="images\Pencil.png" />
   </ItemGroup>

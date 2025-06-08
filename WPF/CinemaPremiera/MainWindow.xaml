@@ -15,43 +15,101 @@
         MinHeight="650" MinWidth="1200" Icon="/images/logo.png"
         Title='Кинотеатр "Премьера"' Height="750" Width="1300" 
         WindowStartupLocation="CenterScreen" Background="#FFF0F0FF"
-        WindowState="Maximized">
+        WindowState="Maximized" PreviewMouseDown="Window_PreviewMouseDown">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="75"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0"
+            <Grid Grid.Row="0"
               VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="SlateBlue">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="110"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="110"/>
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="110"/>
+                </Grid.ColumnDefinitions>
 
-            <Image Source="images/logo.png" Height="70" Width="110" Margin="0 0 10 0"
+                <Image Source="images/logo.png" Height="70" Width="110" Margin="0 0 10 0"
                    HorizontalAlignment="Center" VerticalAlignment="Center"
                    Grid.Column="2"/>
 
-            <Button Height="50" Width="50" Click="BtnClick_Exit"
+                <Button Height="50" Width="50" Click="BtnClick_Menu"
                     BorderThickness="0" Background="Transparent"
                     Grid.Column="0" Margin="10" Visibility="Collapsed"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Name="Btn_Exit">
-                <Image Source="images/Door_Exit.png"/>
-            </Button>
-            
-            <TextBlock Text='Кинотеатр "Премьера"' Foreground="White"
+                    Name="Btn_Menu">
+                    <Image Source="/images/ThreeLines.png"/>
+                </Button>
+
+                <TextBlock Text='Кинотеатр "Премьера"' Foreground="White"
                        FontSize="34" FontWeight="DemiBold" Grid.Column="1"
                        HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock.Effect>
-                    <DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
-                </TextBlock.Effect>
-            </TextBlock>
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Grid>
+
+            <Frame Source="pages/PincodePage.xaml" NavigationUIVisibility="Hidden"
+               Grid.Row="1"/>
         </Grid>
 
-        <Frame Source="pages/PincodePage.xaml" NavigationUIVisibility="Hidden"
-               Grid.Row="1"/>
+        <Border BorderBrush="DarkSlateBlue"
+                BorderThickness="2" 
+                CornerRadius="10"
+                Background="White"
+                Padding="5"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" Name="Border_Menu"
+                Margin="10,80,0,0" Visibility="Collapsed">
+            <StackPanel Orientation="Vertical" Name="Spanel_Menu"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    Height="120" Width="130" Visibility="Visible">
+                <Button Height="25" Width="auto"
+                        Style="{StaticResource Btn_Filters}">
+                    <DockPanel LastChildFill="True">
+                        <Image Source="/images/Order.png"
+                               Width="20" Height="20"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Заказы" Margin="5 0 0 0" FontSize="15"
+                                   VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                    </DockPanel>
+                </Button>
+                <Button Height="25" Width="auto" Margin="0 5 0 0"
+                        Style="{StaticResource Btn_Filters}">
+                    <DockPanel LastChildFill="True">
+                        <Image Source="/images/Film.png"
+                               Width="20" Height="20"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Фильмы" Margin="5 0 0 0" FontSize="15"
+                                   VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                    </DockPanel>
+                </Button>
+                <Button Height="25" Width="auto" Margin="0 5 0 0"
+                        Style="{StaticResource Btn_Filters}">
+                    <DockPanel LastChildFill="True">
+                        <Image Source="/images/Schedule.png"
+                               Width="20" Height="20"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Расписание" Margin="5 0 0 0" FontSize="15"
+                                   VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                    </DockPanel>
+                </Button>
+                <Button Height="25" Width="auto" Margin="0 5 0 0"
+                        Style="{StaticResource Btn_Filters}"
+                        Name="Btn_Exit" Click="BtnClick_Exit">
+                    <DockPanel LastChildFill="True">
+                        <Image Source="/images/Door_Exit.png"
+                               Width="20" Height="20"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Выход" Margin="5 0 0 0" FontSize="15"
+                                   VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                    </DockPanel>
+                </Button>
+            </StackPanel>
+        </Border>
+
     </Grid>
 </Window>
