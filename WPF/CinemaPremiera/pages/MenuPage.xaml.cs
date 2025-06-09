@@ -413,6 +413,8 @@ namespace CinemaPremiera.pages
             FormWindow formWindow = new FormWindow();
             formWindow.ShowDialog();
         }
+        
+        // Одиночное удаление
         private void BtnClick_TrashDelete(object sender, RoutedEventArgs e)
         {
             try
@@ -450,6 +452,8 @@ namespace CinemaPremiera.pages
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        
+        // Удаление для нескольких строк
         private void BtnClick_Delete(object sender, RoutedEventArgs e)
         {
             var ordersToDelete = new List<Orders>();
