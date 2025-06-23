@@ -6,7 +6,13 @@
       xmlns:local="clr-namespace:CinemaPremiera.pages"
       mc:Ignorable="d"
       d:DesignHeight="600" d:DesignWidth="1200"
-      Title="PincodePage" Background="#FFF0F0FF">
+      Title="PincodePage">
+    <Page.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFCACAFD"/>
+            <GradientStop Color="#FF9696E8" Offset="1"/>
+        </LinearGradientBrush>
+    </Page.Background>
 
     <StackPanel Orientation="Vertical" Height="600" Width="1300"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -26,7 +32,7 @@
                      IsReadOnly="True" BorderBrush="SlateBlue"
                      TextChanged="Tbox_Pincode_Tc" BorderThickness="2">
         </TextBox>
-        
+
         <UniformGrid Rows="4" Columns="3" Width="275" Height="375" Margin="0 20 0 0">
             <Button Click="BtnClick_One" Content="1" Style="{StaticResource Btn_Pincode}"/>
             <Button Click="BtnClick_Two" Content="2" Style="{StaticResource Btn_Pincode}"/>
@@ -51,6 +57,6 @@
                          Background="White" Foreground="SlateBlue"
                          BorderBrush="SlateBlue"/>
         </StackPanel>
-        
+
     </StackPanel>
 </Page>

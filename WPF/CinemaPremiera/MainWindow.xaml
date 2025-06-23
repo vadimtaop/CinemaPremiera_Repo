@@ -24,7 +24,13 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0"
-              VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="SlateBlue">
+              VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="SlateBlue"/>
+                        <GradientStop Color="#FF3B3273" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="110"/>
                     <ColumnDefinition Width="*"/>

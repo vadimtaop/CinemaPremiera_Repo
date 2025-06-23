@@ -154,3 +154,4 @@ C:\Users\Vadim\source\repos\CinemaPremiera_Repo\WPF\CinemaPremiera\obj\Debug\Cin
 C:\Users\Vadim\source\repos\CinemaPremiera_Repo\WPF\CinemaPremiera\obj\Debug\CinemaPr.A0704BC4.Up2Date
 C:\Users\Vadim\source\repos\CinemaPremiera_Repo\WPF\CinemaPremiera\obj\Debug\CinemaPremiera.exe
 C:\Users\Vadim\source\repos\CinemaPremiera_Repo\WPF\CinemaPremiera\obj\Debug\CinemaPremiera.pdb
+C:\Users\Vadim\source\repos\CinemaPremiera_Repo\WPF\CinemaPremiera\obj\Debug\CinemaPremiera.exe.config
