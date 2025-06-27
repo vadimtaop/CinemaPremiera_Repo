@@ -14,19 +14,36 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="SlateBlue">
-            <TextBlock Text="Анкета" FontSize="24" FontWeight="DemiBold"
-                       VerticalAlignment="Center" HorizontalAlignment="Center"
-                       Foreground="White">
-                <TextBlock.Effect>
-                    <DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
-                </TextBlock.Effect>
-            </TextBlock>
-            <Image Source="../images/logo.png" HorizontalAlignment="Right"
-                   Height="40" VerticalAlignment="Center" Margin="0 0 5 0"/>
-        </Grid>
+        <Border Grid.Row="0" BorderBrush="#FF3B3273" BorderThickness="0 0 0 1">
+            <Border.Effect>
+                <DropShadowEffect Direction="270" BlurRadius="10" ShadowDepth="3" Color="#FF3B3273"/>
+            </Border.Effect>
+            <Grid Grid.Row="0">
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="SlateBlue"/>
+                        <GradientStop Color="#FF3B3273" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <TextBlock Text="Анкета" FontSize="24" FontWeight="DemiBold"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                           Foreground="White">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+                <Image Source="../images/logo.png" HorizontalAlignment="Right"
+                       Height="40" VerticalAlignment="Center" Margin="0 0 5 0"/>
+            </Grid>
+        </Border>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" >
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFCACAFD"/>
+                    <GradientStop Color="#FF9696E8" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -127,6 +144,6 @@
             </StackPanel>
 
         </Grid>
-        
+
     </Grid>
 </Window>

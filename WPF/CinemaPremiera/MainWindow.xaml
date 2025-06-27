@@ -23,43 +23,48 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0"
-              VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                <Grid.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="SlateBlue"/>
-                        <GradientStop Color="#FF3B3273" Offset="1"/>
-                    </LinearGradientBrush>
-                </Grid.Background>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="110"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="110"/>
-                </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" BorderBrush="#FF3B3273" BorderThickness="0 0 0 1">
+                <Border.Effect>
+                    <DropShadowEffect Direction="270" BlurRadius="10" ShadowDepth="3" Color="#FF3B3273"/>
+                </Border.Effect>
+                <Grid Grid.Row="0"
+                      VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="SlateBlue"/>
+                            <GradientStop Color="#FF3B3273" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="110"/>
+                    </Grid.ColumnDefinitions>
 
-                <Image Source="images/logo.png" Height="70" Width="110" Margin="0 0 10 0"
-                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Grid.Column="2"/>
+                    <Image Source="images/logo.png" Height="70" Width="110" Margin="0 0 10 0"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Grid.Column="2"/>
 
-                <Button Height="50" Width="50" Click="BtnClick_Menu"
-                    BorderThickness="0" Background="Transparent"
-                    Grid.Column="0" Margin="10" Visibility="Collapsed"
-                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Name="Btn_Menu">
-                    <Image Source="/images/ThreeLines.png"/>
-                </Button>
+                    <Button Height="50" Width="50" Click="BtnClick_Menu"
+                            BorderThickness="0" Background="Transparent"
+                            Grid.Column="0" Margin="10" Visibility="Collapsed"
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Name="Btn_Menu">
+                        <Image Source="/images/ThreeLines.png"/>
+                    </Button>
 
-                <TextBlock Text='Кинотеатр "Премьера"' Foreground="White"
+                    <TextBlock Text='Кинотеатр "Премьера"' Foreground="White"
                        FontSize="34" FontWeight="DemiBold" Grid.Column="1"
                        HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock.Effect>
-                        <DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
-                    </TextBlock.Effect>
-                </TextBlock>
-            </Grid>
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </Grid>
+            </Border>
 
             <Frame Source="pages/PincodePage.xaml" NavigationUIVisibility="Hidden"
-               Grid.Row="1"/>
+                   Grid.Row="1"/>
         </Grid>
 
         <Border BorderBrush="DarkSlateBlue"

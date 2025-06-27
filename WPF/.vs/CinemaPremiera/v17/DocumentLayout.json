@@ -3,28 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|c:\\users\\vadim\\source\\repos\\cinemapremiera_repo\\wpf\\cinemapremiera\\pages\\pincodepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|solutionrelative:cinemapremiera\\pages\\pincodepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|c:\\users\\vadim\\source\\repos\\cinemapremiera_repo\\wpf\\cinemapremiera\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|solutionrelative:cinemapremiera\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\cinemapremiera\\pages\\menupage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|c:\\users\\vadim\\source\\repos\\cinemapremiera_repo\\wpf\\cinemapremiera\\pages\\menupage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|solutionrelative:cinemapremiera\\pages\\menupage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|c:\\users\\vadim\\source\\repos\\cinemapremiera_repo\\wpf\\cinemapremiera\\windows\\formwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|solutionrelative:cinemapremiera\\windows\\formwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\cinemapremiera\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|solutionrelative:cinemapremiera\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|c:\\users\\vadim\\source\\repos\\cinemapremiera_repo\\wpf\\cinemapremiera\\pages\\menupage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|solutionrelative:cinemapremiera\\pages\\menupage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\cinemapremiera\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|solutionrelative:cinemapremiera\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,31 +31,30 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PincodePage.xaml",
-              "DocumentMoniker": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\pages\\PincodePage.xaml",
-              "RelativeDocumentMoniker": "CinemaPremiera\\pages\\PincodePage.xaml",
-              "ToolTip": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\pages\\PincodePage.xaml",
-              "RelativeToolTip": "CinemaPremiera\\pages\\PincodePage.xaml",
+              "Title": "MenuPage.xaml",
+              "DocumentMoniker": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\pages\\MenuPage.xaml",
+              "RelativeDocumentMoniker": "CinemaPremiera\\pages\\MenuPage.xaml",
+              "ToolTip": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\pages\\MenuPage.xaml",
+              "RelativeToolTip": "CinemaPremiera\\pages\\MenuPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-23T16:52:50.48Z",
+              "WhenOpened": "2025-06-27T18:56:57.935Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "CinemaPremiera\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\MainWindow.xaml.cs",
-              "RelativeToolTip": "CinemaPremiera\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-23T16:37:16.798Z",
+              "Title": "FormWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\windows\\FormWindow.xaml",
+              "RelativeDocumentMoniker": "CinemaPremiera\\windows\\FormWindow.xaml",
+              "ToolTip": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\windows\\FormWindow.xaml",
+              "RelativeToolTip": "CinemaPremiera\\windows\\FormWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-27T18:44:55.577Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\MainWindow.xaml",
               "RelativeDocumentMoniker": "CinemaPremiera\\MainWindow.xaml",
@@ -75,43 +62,6 @@
               "RelativeToolTip": "CinemaPremiera\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-06-08T08:21:47.676Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MenuPage.xaml",
-              "DocumentMoniker": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\pages\\MenuPage.xaml",
-              "RelativeDocumentMoniker": "CinemaPremiera\\pages\\MenuPage.xaml",
-              "ToolTip": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\pages\\MenuPage.xaml",
-              "RelativeToolTip": "CinemaPremiera\\pages\\MenuPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-08T07:44:42.697Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\App.xaml",
-              "RelativeDocumentMoniker": "CinemaPremiera\\App.xaml",
-              "ToolTip": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\App.xaml",
-              "RelativeToolTip": "CinemaPremiera\\App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-04T17:43:13.761Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MenuPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\pages\\MenuPage.xaml.cs",
-              "RelativeDocumentMoniker": "CinemaPremiera\\pages\\MenuPage.xaml.cs",
-              "ToolTip": "C:\\Users\\Vadim\\source\\repos\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\pages\\MenuPage.xaml.cs",
-              "RelativeToolTip": "CinemaPremiera\\pages\\MenuPage.xaml.cs",
-              "ViewState": "AgIAAP4BAAAAAAAAAAAgwAwCAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T16:14:48.703Z",
               "EditorCaption": ""
             }
           ]

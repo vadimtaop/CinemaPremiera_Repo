@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CinemaPremiera.pages"
       mc:Ignorable="d"
-      d:DesignHeight="600" d:DesignWidth="1200"
+      d:DesignHeight="560" d:DesignWidth="1200"
       Title="PincodePage">
     <Page.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
