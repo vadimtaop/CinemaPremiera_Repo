@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ado/model_cinemapremieradb.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ado/model_cinemapremieradb.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ado/cinemapremieradb.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ado/cinemapremieradb.tt")]
 
 

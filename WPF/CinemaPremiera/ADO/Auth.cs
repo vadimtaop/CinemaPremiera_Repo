@@ -12,9 +12,12 @@ namespace CinemaPremiera.ADO
     using System;
     using System.Collections.Generic;
     
-    public partial class Authorization
+    public partial class Auth
     {
-        public int ID { get; set; }
+        public int Auth_ID { get; set; }
         public int Pincode { get; set; }
+        public int Role_ID { get; set; }
+    
+        public virtual Role Role { get; set; }
     }
 }

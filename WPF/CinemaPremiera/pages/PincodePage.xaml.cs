@@ -34,7 +34,7 @@ namespace CinemaPremiera.pages
                 // Пересоздаем контекст БД
                 var db = new CinemaPremieraDBEntities();
 
-                var truePincode = await Task.Run(() => db.Authorization.AsNoTracking().FirstOrDefault()?.Pincode);
+                var truePincode = await Task.Run(() => db.Auth.AsNoTracking().FirstOrDefault()?.Pincode);
 
                 this.TruePincode = truePincode;
                 db.Dispose(); // Закрываем подключение

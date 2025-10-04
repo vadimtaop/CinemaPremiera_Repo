@@ -122,6 +122,42 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ADO\Auth.cs">
+      <DependentUpon>CinemaPremieraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADO\CinemaPremieraDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CinemaPremieraDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADO\CinemaPremieraDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CinemaPremieraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADO\CinemaPremieraDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CinemaPremieraDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ADO\Film.cs">
+      <DependentUpon>CinemaPremieraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADO\Order.cs">
+      <DependentUpon>CinemaPremieraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADO\PaymentType.cs">
+      <DependentUpon>CinemaPremieraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADO\PriceList.cs">
+      <DependentUpon>CinemaPremieraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADO\Role.cs">
+      <DependentUpon>CinemaPremieraDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADO\sysdiagrams.cs">
+      <DependentUpon>CinemaPremieraDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="windows\FormWindow.xaml.cs">
       <DependentUpon>FormWindow.xaml</DependentUpon>
     </Compile>
@@ -130,39 +166,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="ADO\AppData.cs" />
-    <Compile Include="ADO\Authorization.cs">
-      <DependentUpon>Model_CinemaPremieraDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\Film.cs">
-      <DependentUpon>Model_CinemaPremieraDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\Model_CinemaPremieraDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model_CinemaPremieraDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\Model_CinemaPremieraDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model_CinemaPremieraDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\Model_CinemaPremieraDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model_CinemaPremieraDB.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\Orders.cs">
-      <DependentUpon>Model_CinemaPremieraDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\PaymentType.cs">
-      <DependentUpon>Model_CinemaPremieraDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\PriceList.cs">
-      <DependentUpon>Model_CinemaPremieraDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\sysdiagrams.cs">
-      <DependentUpon>Model_CinemaPremieraDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -208,12 +211,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="ADO\Model_CinemaPremieraDB.edmx">
+    <EntityDeploy Include="ADO\CinemaPremieraDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model_CinemaPremieraDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>CinemaPremieraDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="ADO\Model_CinemaPremieraDB.edmx.diagram">
-      <DependentUpon>Model_CinemaPremieraDB.edmx</DependentUpon>
+    <None Include="ADO\CinemaPremieraDB.edmx.diagram">
+      <DependentUpon>CinemaPremieraDB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -224,7 +227,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="ADO\CinemaPremieraDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CinemaPremieraDB.Context.cs</LastGenOutput>
+      <DependentUpon>CinemaPremieraDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="ADO\CinemaPremieraDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CinemaPremieraDB.edmx</DependentUpon>
+      <LastGenOutput>CinemaPremieraDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="images\logo.png" />
   </ItemGroup>
@@ -232,16 +246,6 @@
     <Resource Include="images\Door_Exit.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ADO\Model_CinemaPremieraDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model_CinemaPremieraDB.Context.cs</LastGenOutput>
-      <DependentUpon>Model_CinemaPremieraDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="ADO\Model_CinemaPremieraDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model_CinemaPremieraDB.edmx</DependentUpon>
-      <LastGenOutput>Model_CinemaPremieraDB.cs</LastGenOutput>
-    </Content>
     <Resource Include="images\Schedule.png" />
     <Resource Include="images\Film.png" />
     <Resource Include="images\Order.png" />

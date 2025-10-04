@@ -12,21 +12,18 @@ namespace CinemaPremiera.ADO
     using System;
     using System.Collections.Generic;
     
-    public partial class Film
+    public partial class Role
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Film()
+        public Role()
         {
-            this.Order = new HashSet<Order>();
+            this.Auth = new HashSet<Auth>();
         }
     
-        public int Film_ID { get; set; }
+        public int Role_ID { get; set; }
         public string Title { get; set; }
-        public int AgeLimit { get; set; }
-        public decimal DurationInMinutes { get; set; }
-        public string Genre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual ICollection<Auth> Auth { get; set; }
     }
 }

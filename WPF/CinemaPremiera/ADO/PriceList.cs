@@ -17,13 +17,13 @@ namespace CinemaPremiera.ADO
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PriceList()
         {
-            this.Orders = new HashSet<Orders>();
+            this.Order = new HashSet<Order>();
         }
     
-        public int ID { get; set; }
+        public int PriceList_ID { get; set; }
         public decimal Price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Order> Order { get; set; }
     }
 }

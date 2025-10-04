@@ -25,11 +25,12 @@ namespace CinemaPremiera.ADO
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Authorization> Authorization { get; set; }
+        public virtual DbSet<Auth> Auth { get; set; }
         public virtual DbSet<Film> Film { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<PaymentType> PaymentType { get; set; }
         public virtual DbSet<PriceList> PriceList { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

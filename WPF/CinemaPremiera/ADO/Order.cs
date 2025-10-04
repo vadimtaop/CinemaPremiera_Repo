@@ -11,18 +11,17 @@ namespace CinemaPremiera.ADO
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
-    public partial class Orders
+    
+    public partial class Order
     {
-        public int ID { get; set; }
+        public int Order_ID { get; set; }
         public System.DateTime DateBuy { get; set; }
-        public int ID_Film { get; set; }
+        public int Film_ID { get; set; }
         public System.DateTime DateSession { get; set; }
-        public int ID_PriceList { get; set; }
+        public int PriceList_ID { get; set; }
         public int Count { get; set; }
         public decimal CheckSum { get; set; }
-        public int ID_PaymentType { get; set; }
+        public int PaymentType_ID { get; set; }
         public string Note { get; set; }
     
         public virtual Film Film { get; set; }

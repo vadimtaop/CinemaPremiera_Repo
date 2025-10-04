@@ -40,12 +40,12 @@ namespace CinemaPremiera.windows
         {
             try
             {
-                Orders orders = new Orders();
+                Order orders = new Order();
 
                 orders.DateBuy = Dpicker_DateBuy.SelectedDate.Value;
                 if (Cbox_Film.SelectedItem is Film selectedFilm)
                 {
-                    orders.ID_Film = selectedFilm.ID;
+                    orders.Film_ID = selectedFilm.Film_ID;
                 }
                 else
                 {
@@ -54,7 +54,7 @@ namespace CinemaPremiera.windows
                 orders.DateSession = Dpicker_DateSession.SelectedDate.Value;
                 if (Cbox_PriceList.SelectedItem is PriceList itemPriceList)
                 {
-                    orders.ID_PriceList = itemPriceList.ID;
+                    orders.PriceList_ID = itemPriceList.PriceList_ID;
                 }
                 else
                 {
@@ -64,7 +64,7 @@ namespace CinemaPremiera.windows
                 orders.CheckSum = decimal.Parse(Tbox_CheckSum.Text);
                 if (Cbox_PaymentType.SelectedItem is PaymentType itemPaymentType)
                 {
-                    orders.ID_PaymentType = itemPaymentType.ID;
+                    orders.PaymentType_ID = itemPaymentType.PaymentType_ID;
                 }
                 else
                 {
@@ -72,7 +72,7 @@ namespace CinemaPremiera.windows
                 }
                 orders.Note = Tbox_Note.Text;
 
-                AppData.db.Orders.Add(orders);
+                AppData.db.Order.Add(orders);
                 AppData.db.SaveChanges();
                 MessageBox.Show("Данные успешно добавлены.", "Информация",
                     MessageBoxButton.OK, MessageBoxImage.Information);
@@ -130,17 +130,17 @@ namespace CinemaPremiera.windows
                     int orderID = this.EditingOrderId;
 
                     // Находим заказ в БД
-                    var order = AppData.db.Orders.FirstOrDefault(o => o.ID == orderID);
+                    var order = AppData.db.Order.FirstOrDefault(o => o.Order_ID == orderID);
 
                     // Сохраняем изменения
                     if (order != null)
                     {
                         order.DateBuy = Dpicker_DateBuy.SelectedDate.Value;
-                        order.ID_Film = (int)Cbox_Film.SelectedValue;
+                        order.Film_ID = (int)Cbox_Film.SelectedValue;
                         order.DateSession = Dpicker_DateSession.SelectedDate.Value;
                         if (Cbox_PriceList.SelectedItem is PriceList itemPriceList)
                         {
-                            order.ID_PriceList = itemPriceList.ID;
+                            order.PriceList_ID = itemPriceList.PriceList_ID;
                         }
                         else
                         {
@@ -150,7 +150,7 @@ namespace CinemaPremiera.windows
                         order.CheckSum = decimal.Parse(Tbox_CheckSum.Text);
                         if (Cbox_PaymentType.SelectedItem is PaymentType itemPaymentType)
                         {
-                            order.ID_PaymentType = itemPaymentType.ID;
+                            order.PaymentType_ID = itemPaymentType.PaymentType_ID;
                         }
                         else
                         {
@@ -185,7 +185,7 @@ namespace CinemaPremiera.windows
                 // Указываем какое поле отображать (Title)
                 Cbox_Film.DisplayMemberPath = "Title";
                 // Указываем какое поле будет значением (ID)
-                Cbox_Film.SelectedValuePath = "ID";
+                Cbox_Film.SelectedValuePath = "Film_ID";
             }
             catch (Exception ex)
             {
@@ -205,7 +205,7 @@ namespace CinemaPremiera.windows
                 // Указываем какое поле отображать (Price)
                 Cbox_PriceList.DisplayMemberPath = "Price";
                 // Указываем какое поле будет значением (ID)
-                Cbox_PriceList.SelectedValuePath = "ID";
+                Cbox_PriceList.SelectedValuePath = "PriceList_ID";
             }
             catch (Exception ex)
             {
@@ -225,7 +225,7 @@ namespace CinemaPremiera.windows
                 // Указываем какое поле отображать (Title)
                 Cbox_PaymentType.DisplayMemberPath = "Title";
                 // Указываем какое поле будет значением (ID)
-                Cbox_PaymentType.SelectedValuePath = "ID";
+                Cbox_PaymentType.SelectedValuePath = "PaymentType_ID";
             }
             catch (Exception ex)
             {

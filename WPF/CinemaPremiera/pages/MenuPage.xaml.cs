@@ -36,7 +36,7 @@ namespace CinemaPremiera.pages
             LoadPriceList();
             LoadPaymentType();
 
-            DG_Orders.ItemsSource = AppData.db.Orders.ToList();
+            DG_Orders.ItemsSource = AppData.db.Order.ToList();
         }
 
         private void BtnClick_Apply(object sender, RoutedEventArgs e)
@@ -54,7 +54,7 @@ namespace CinemaPremiera.pages
             string searchText = Tbox_Search.Text.ToLower();
 
             // Получаем все строки из таблицы Orders (БД)
-            var DataOrders = AppData.db.Orders.ToList();
+            var DataOrders = AppData.db.Order.ToList();
 
             // Пытаемся распарсить даты (если введены)
             DateTime? startDate = null;
@@ -140,7 +140,7 @@ namespace CinemaPremiera.pages
         {
             try
             {
-                var orders = AppData.db.Orders
+                var orders = AppData.db.Order
                                 .Include(o => o.Film)
                                 .Include(o => o.PriceList)
                                 .Include(o => o.PaymentType)
@@ -190,7 +190,7 @@ namespace CinemaPremiera.pages
                         foreach (var order in orders)
                         {
                             // ID
-                            worksheet.Cell(row, 1).Value = order.ID;
+                            worksheet.Cell(row, 1).Value = order.Order_ID;
 
                             // Дата покупки (только дата)
                             if (order.DateBuy != null)
@@ -264,7 +264,7 @@ namespace CinemaPremiera.pages
                 string searchText = Tbox_Search.Text.ToLower();
 
                 // Получаем все заказы с включенными связанными данными
-                var orders = AppData.db.Orders
+                var orders = AppData.db.Order
                                 .Include(o => o.Film)
                                 .Include(o => o.PriceList)
                                 .Include(o => o.PaymentType)
@@ -351,7 +351,7 @@ namespace CinemaPremiera.pages
                         foreach (var order in filteredOrders) // Используем filteredOrders вместо orders
                         {
                             // ID
-                            worksheet.Cell(row, 1).Value = order.ID;
+                            worksheet.Cell(row, 1).Value = order.Order_ID;
 
                             // Дата покупки (только дата)
                             if (order.DateBuy != null)
@@ -421,7 +421,7 @@ namespace CinemaPremiera.pages
             {
                 // Получаем текущий заказ из строки, где находится кнопка
                 var button = sender as Button;
-                var order = button.DataContext as Orders;
+                var order = button.DataContext as ADO.Order;
 
                 if (order == null)
                 {
@@ -431,7 +431,7 @@ namespace CinemaPremiera.pages
                 }
 
                 // Подтверждение удаления
-                var result = MessageBox.Show($"Вы действительно хотите удалить заказ №{order.ID}?",
+                var result = MessageBox.Show($"Вы действительно хотите удалить заказ №{order.Order_ID}?",
                     "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (result != MessageBoxResult.Yes)
@@ -440,7 +440,7 @@ namespace CinemaPremiera.pages
                 }
 
                 // Удаляем заказ
-                AppData.db.Orders.Remove(order);
+                AppData.db.Order.Remove(order);
                 AppData.db.SaveChanges();
 
                 MessageBox.Show("Заказ успешно удален.", "Информация",
@@ -456,7 +456,7 @@ namespace CinemaPremiera.pages
         // Удаление для нескольких строк
         private void BtnClick_Delete(object sender, RoutedEventArgs e)
         {
-            var ordersToDelete = new List<Orders>();
+            var ordersToDelete = new List<ADO.Order>();
 
             // Собираем отмеченные записи
             foreach (var item in DG_Orders.Items)
@@ -467,7 +467,7 @@ namespace CinemaPremiera.pages
                     var checkBox = FindVisualChild<CheckBox>(row);
                     if (checkBox?.IsChecked == true)
                     {
-                        ordersToDelete.Add(item as Orders);
+                        ordersToDelete.Add(item as ADO.Order);
                     }
                 }
             }
@@ -494,10 +494,10 @@ namespace CinemaPremiera.pages
             {
                 foreach (var order in ordersToDelete)
                 {
-                    AppData.db.Orders.Remove(order);
+                    AppData.db.Order.Remove(order);
                     AppData.db.SaveChanges();
 
-                    DG_Orders.ItemsSource = AppData.db.Orders.ToList(); // Обновляем таблицу
+                    DG_Orders.ItemsSource = AppData.db.Order.ToList(); // Обновляем таблицу
                     MessageBox.Show("Удаление завершено.", "Информация",
                                 MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -528,7 +528,7 @@ namespace CinemaPremiera.pages
             {
                 // Получаем объект данных из строки, где находится кнопка
                 var button = sender as Button;
-                var order = button.DataContext as Orders;
+                var order = button.DataContext as ADO.Order;
 
                 if (order == null)
                 {
@@ -542,15 +542,15 @@ namespace CinemaPremiera.pages
                 var editWindow = new FormWindow();
 
                 // Передаем ID заказа, который редактируется
-                editWindow.EditingOrderId = order.ID;
+                editWindow.EditingOrderId = order.Order_ID;
 
                 // Заполняем поля
                 editWindow.Dpicker_DateBuy.SelectedDate = order.DateBuy;
-                editWindow.Cbox_Film.SelectedValue = order.ID_Film;
+                editWindow.Cbox_Film.SelectedValue = order.Film_ID;
                 editWindow.Dpicker_DateSession.SelectedDate = order.DateSession;
-                editWindow.Cbox_PriceList.SelectedValue = order.ID_PriceList;
+                editWindow.Cbox_PriceList.SelectedValue = order.PriceList_ID;
                 editWindow.Tbox_Count.Text = order.Count.ToString();
-                editWindow.Cbox_PaymentType.SelectedValue = order.ID_PaymentType;
+                editWindow.Cbox_PaymentType.SelectedValue = order.PaymentType_ID;
                 editWindow.Tbox_Note.Text = order.Note.ToString();
 
                 // Скрываем кнопку "добавить" и показываем кнопку "сохранить"
@@ -579,8 +579,8 @@ namespace CinemaPremiera.pages
                 Cbox_Film.ItemsSource = films;
                 // Указываем какое поле отображать (Title)
                 Cbox_Film.DisplayMemberPath = "Title";
-                // Указываем какое поле будет значением (ID)
-                Cbox_Film.SelectedValuePath = "ID";
+                // Указываем какое поле будет значением (Film_ID)
+                Cbox_Film.SelectedValuePath = "Film_ID";
             }
             catch (Exception ex)
             {
@@ -599,8 +599,8 @@ namespace CinemaPremiera.pages
                 Cbox_PriceList.ItemsSource = price;
                 // Указываем какое поле отображать (Price)
                 Cbox_PriceList.DisplayMemberPath = "Price";
-                // Указываем какое поле будет значением (ID)
-                Cbox_PriceList.SelectedValuePath = "ID";
+                // Указываем какое поле будет значением (PriceList_ID)
+                Cbox_PriceList.SelectedValuePath = "PriceList_ID";
             }
             catch (Exception ex)
             {
@@ -619,8 +619,8 @@ namespace CinemaPremiera.pages
                 Cbox_PaymentType.ItemsSource = paymentType;
                 // Указываем какое поле отображать (Title)
                 Cbox_PaymentType.DisplayMemberPath = "Title";
-                // Указываем какое поле будет значением (ID)
-                Cbox_PaymentType.SelectedValuePath = "ID";
+                // Указываем какое поле будет значением (PaymentType_ID)
+                Cbox_PaymentType.SelectedValuePath = "PaymentType_ID";
             }
             catch (Exception ex)
             {
@@ -649,14 +649,14 @@ namespace CinemaPremiera.pages
                         var worksheet = workbook.Worksheet(1);
                         var rows = worksheet.RowsUsed().Skip(1);
 
-                        var importedOrders = new List<Orders>();
+                        var importedOrders = new List<ADO.Order>();
 
                         foreach (var row in rows)
                         {
                             try
                             {
                                 // Безопасное чтение данных
-                                var order = new Orders
+                                var order = new ADO.Order
                                 {
                                     DateBuy = DateTime.Parse(row.Cell(2).Value.ToString()),
                                     Film = GetOrCreateFilm(row.Cell(3).Value.ToString()),
@@ -683,7 +683,7 @@ namespace CinemaPremiera.pages
 
                         if (importedOrders.Any())
                         {
-                            AppData.db.Orders.AddRange(importedOrders);
+                            AppData.db.Order.AddRange(importedOrders);
                             AppData.db.SaveChanges();
 
                             MessageBox.Show($"Успешно импортировано {importedOrders.Count} записей",
