@@ -158,8 +158,26 @@
     <Compile Include="ADO\sysdiagrams.cs">
       <DependentUpon>CinemaPremieraDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="windows\FormWindow.xaml.cs">
-      <DependentUpon>FormWindow.xaml</DependentUpon>
+    <Compile Include="pages\FilmPage.xaml.cs">
+      <DependentUpon>FilmPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\PriceListPage.xaml.cs">
+      <DependentUpon>PriceListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\AddFilmWindow.xaml.cs">
+      <DependentUpon>AddFilmWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\AddOrderWindow.xaml.cs">
+      <DependentUpon>AddOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\AddPriceListWindow.xaml.cs">
+      <DependentUpon>AddPriceListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\AddUserWindow.xaml.cs">
+      <DependentUpon>AddUserWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -174,7 +192,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="pages\MenuPage.xaml">
+    <Page Include="pages\FilmPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\OrderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,14 +204,34 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="windows\FormWindow.xaml">
+    <Page Include="pages\PriceListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\UserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\AddFilmWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\AddOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\AddPriceListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\AddUserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pages\MenuPage.xaml.cs">
-      <DependentUpon>MenuPage.xaml</DependentUpon>
+    <Compile Include="pages\OrderPage.xaml.cs">
+      <DependentUpon>OrderPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\PincodePage.xaml.cs">
       <DependentUpon>PincodePage.xaml</DependentUpon>
@@ -238,6 +280,8 @@
       <DependentUpon>CinemaPremieraDB.edmx</DependentUpon>
       <LastGenOutput>CinemaPremieraDB.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\Money.png" />
+    <Resource Include="images\User.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\logo.png" />

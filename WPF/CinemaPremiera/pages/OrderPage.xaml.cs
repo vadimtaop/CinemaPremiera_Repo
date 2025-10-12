@@ -24,11 +24,11 @@ using ControlzEx.Standard;
 namespace CinemaPremiera.pages
 {
     /// <summary>
-    /// Логика взаимодействия для MenuPage.xaml
+    /// Логика взаимодействия для OrderPage.xaml
     /// </summary>
-    public partial class MenuPage : Page
+    public partial class OrderPage : Page
     {
-        public MenuPage()
+        public OrderPage()
         {
             InitializeComponent();
 
@@ -42,6 +42,7 @@ namespace CinemaPremiera.pages
         private void BtnClick_Apply(object sender, RoutedEventArgs e)
         {
             // Получаем данные из используемых фильтров (TextBox)
+            string order_ID_Text = Tbox_Order_ID.Text;
             string dateBuyS_Text = Dpicker_DateBuyS.Text;
             string dateBuyPo_Text = Dpicker_DateBuyPo.Text;
             string film_Text = Cbox_Film.Text;
@@ -53,7 +54,7 @@ namespace CinemaPremiera.pages
             string note_Text = Tbox_Note.Text;
             string searchText = Tbox_Search.Text.ToLower();
 
-            // Получаем все строки из таблицы Orders (БД)
+            // Получаем все строки из таблицы Order (БД)
             var DataOrders = AppData.db.Order.ToList();
 
             // Пытаемся распарсить даты (если введены)
@@ -69,11 +70,12 @@ namespace CinemaPremiera.pages
                 endDate = parsedEndDate;
             }
 
-            // Фильтруем заказы по всем фильтрам
+            // Ищем заказы по всем фильтрам
             var filteredOrders = DataOrders.Where(o =>
                                     // Фильтры
                                     (startDate == null || o.DateBuy >= startDate) &&
                                     (endDate == null || o.DateBuy <= endDate) &&
+                                    (string.IsNullOrEmpty(order_ID_Text) || o.Order_ID.ToString().Contains(order_ID_Text)) &&
                                     (string.IsNullOrEmpty(dateSession_Text) || o.DateSession.ToString("d").Contains(dateSession_Text)) &&
                                     (string.IsNullOrEmpty(film_Text) || (o.Film != null && o.Film.Title.Contains(film_Text))) &&
                                     (string.IsNullOrEmpty(priceList_Text) || (o.PriceList != null && o.PriceList.Price.ToString().Contains(priceList_Text))) &&
@@ -83,7 +85,8 @@ namespace CinemaPremiera.pages
                                     (string.IsNullOrEmpty(note_Text) || (o.Note != null && o.Note.Contains(note_Text))) &&
                                     // Поиск
                                     (string.IsNullOrEmpty(searchText) ||
-                                        o.DateBuy.ToString("d").ToLower().Contains(searchText) ||
+                                        (o.Order_ID.ToString().Contains(searchText)) ||
+                                        (o.DateBuy.ToString("d").ToLower().Contains(searchText)) ||
                                         (o.Film != null && o.Film.Title.ToLower().Contains(searchText)) ||
                                         (o.DateSession.ToString("d").Contains(searchText)) ||
                                         (o.PriceList != null && o.PriceList.Price.ToString().Contains(searchText)) ||
@@ -99,6 +102,7 @@ namespace CinemaPremiera.pages
 
         private void BtnClick_ResetFilters(object sender, RoutedEventArgs e)
         {
+            Tbox_Order_ID.Text = "";
             Tbox_Search.Text = "";
             Dpicker_DateBuyS.Text = "";
             Dpicker_DateBuyPo.Text = "";
@@ -109,6 +113,7 @@ namespace CinemaPremiera.pages
             Tbox_CheckSum.Text = "";
             Cbox_PaymentType.Text = "";
             Tbox_Note.Text = "";
+            DG_Orders.ItemsSource = AppData.db.Order.ToList();
         }
 
         private void DateBuyS_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -407,230 +412,6 @@ namespace CinemaPremiera.pages
                               MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        private void BtnClick_Add(object sender, RoutedEventArgs e)
-        {
-            FormWindow formWindow = new FormWindow();
-            formWindow.ShowDialog();
-        }
-        
-        // Одиночное удаление
-        private void BtnClick_TrashDelete(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                // Получаем текущий заказ из строки, где находится кнопка
-                var button = sender as Button;
-                var order = button.DataContext as ADO.Order;
-
-                if (order == null)
-                {
-                    MessageBox.Show("Не удалось получить данные заказа для удаления.", "Ошибка",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                // Подтверждение удаления
-                var result = MessageBox.Show($"Вы действительно хотите удалить заказ №{order.Order_ID}?",
-                    "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                if (result != MessageBoxResult.Yes)
-                {
-                    return;
-                }
-
-                // Удаляем заказ
-                AppData.db.Order.Remove(order);
-                AppData.db.SaveChanges();
-
-                MessageBox.Show("Заказ успешно удален.", "Информация",
-                    MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-        
-        // Удаление для нескольких строк
-        private void BtnClick_Delete(object sender, RoutedEventArgs e)
-        {
-            var ordersToDelete = new List<ADO.Order>();
-
-            // Собираем отмеченные записи
-            foreach (var item in DG_Orders.Items)
-            {
-                var row = DG_Orders.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-                if (row != null)
-                {
-                    var checkBox = FindVisualChild<CheckBox>(row);
-                    if (checkBox?.IsChecked == true)
-                    {
-                        ordersToDelete.Add(item as ADO.Order);
-                    }
-                }
-            }
-
-            if (ordersToDelete.Count == 0)
-            {
-                MessageBox.Show("Не выбранно ни одного значения для удаления.", "Информация",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
-
-            var result = MessageBox.Show($"Вы действительно хотите удалить {ordersToDelete.Count} заказов?",
-                "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
-            // Если пользователь не подтвердил удаление
-            if (result != MessageBoxResult.Yes)
-            {
-                MessageBox.Show("Удаление отменено", "Информация",
-                              MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
-
-            // Удаляем выбранные заказы
-            try
-            {
-                foreach (var order in ordersToDelete)
-                {
-                    AppData.db.Order.Remove(order);
-                    AppData.db.SaveChanges();
-
-                    DG_Orders.ItemsSource = AppData.db.Order.ToList(); // Обновляем таблицу
-                    MessageBox.Show("Удаление завершено.", "Информация",
-                                MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        // Вспомогательный метод для поиска CheckBox в строке
-        private T FindVisualChild<T>(DependencyObject obj) where T : DependencyObject
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-            {
-                var child = VisualTreeHelper.GetChild(obj, i);
-                if (child is T) return (T)child;
-                var childOfChild = FindVisualChild<T>(child);
-                if (childOfChild != null) return childOfChild;
-            }
-            return null;
-        }
-
-        private void BtnClick_Edit(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                // Получаем объект данных из строки, где находится кнопка
-                var button = sender as Button;
-                var order = button.DataContext as ADO.Order;
-
-                if (order == null)
-                {
-                    MessageBox.Show("Не удалось получить данные заказа.", "Ошибка",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                // Создаем и настраиваем окно редактирования
-
-                var editWindow = new FormWindow();
-
-                // Передаем ID заказа, который редактируется
-                editWindow.EditingOrderId = order.Order_ID;
-
-                // Заполняем поля
-                editWindow.Dpicker_DateBuy.SelectedDate = order.DateBuy;
-                editWindow.Cbox_Film.SelectedValue = order.Film_ID;
-                editWindow.Dpicker_DateSession.SelectedDate = order.DateSession;
-                editWindow.Cbox_PriceList.SelectedValue = order.PriceList_ID;
-                editWindow.Tbox_Count.Text = order.Count.ToString();
-                editWindow.Cbox_PaymentType.SelectedValue = order.PaymentType_ID;
-                editWindow.Tbox_Note.Text = order.Note.ToString();
-
-                // Скрываем кнопку "добавить" и показываем кнопку "сохранить"
-                editWindow.Btn_Add.Visibility = Visibility.Collapsed;
-                editWindow.Btn_Save.Visibility = Visibility.Visible;
-
-                // Открываем окно
-                editWindow.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Произошла ошибка: " + ex.Message , "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        // Загружаем все данные в ComboBox из БД
-        private void LoadFilm()
-        {
-            try
-            {
-                // Получаем все фильмы из БД и сортируем по названию
-                var films = AppData.db.Film.OrderBy(f => f.Title).ToList();
-
-                // Назначем источник данных для ComboBox
-                Cbox_Film.ItemsSource = films;
-                // Указываем какое поле отображать (Title)
-                Cbox_Film.DisplayMemberPath = "Title";
-                // Указываем какое поле будет значением (Film_ID)
-                Cbox_Film.SelectedValuePath = "Film_ID";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-        private void LoadPriceList()
-        {
-            try
-            {
-                // Получаем все цены из БД и сортируем по названию
-                var price = AppData.db.PriceList.OrderBy(p => p.Price).ToList();
-
-                // Назначем источник данных для ComboBox
-                Cbox_PriceList.ItemsSource = price;
-                // Указываем какое поле отображать (Price)
-                Cbox_PriceList.DisplayMemberPath = "Price";
-                // Указываем какое поле будет значением (PriceList_ID)
-                Cbox_PriceList.SelectedValuePath = "PriceList_ID";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-        private void LoadPaymentType()
-        {
-            try
-            {
-                // Получаем все спобосы оплаты из БД и сортируем по названию
-                var paymentType = AppData.db.PaymentType.OrderBy(f => f.Title).ToList();
-
-                // Назначем источник данных для ComboBox
-                Cbox_PaymentType.ItemsSource = paymentType;
-                // Указываем какое поле отображать (Title)
-                Cbox_PaymentType.DisplayMemberPath = "Title";
-                // Указываем какое поле будет значением (PaymentType_ID)
-                Cbox_PaymentType.SelectedValuePath = "PaymentType_ID";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-
-
         // Импорт данных из таблицы Excel
         private void BtnClick_ImportExcel(object sender, RoutedEventArgs e)
         {
@@ -700,6 +481,230 @@ namespace CinemaPremiera.pages
                               "Ошибка",
                               MessageBoxButton.OK,
                               MessageBoxImage.Error);
+            }
+        }
+        private void BtnClick_Add(object sender, RoutedEventArgs e)
+        {
+            AddOrderWindow addOrderWindow = new AddOrderWindow();
+            addOrderWindow.ShowDialog();
+        }
+        
+        // Одиночное удаление
+        private void BtnClick_TrashDelete(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Получаем текущий заказ из строки, где находится кнопка
+                var button = sender as Button;
+                var order = button.DataContext as ADO.Order;
+
+                if (order == null)
+                {
+                    MessageBox.Show("Не удалось получить данные заказа для удаления.", "Ошибка",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Подтверждение удаления
+                var result = MessageBox.Show($"Вы действительно хотите удалить заказ №{order.Order_ID}?",
+                    "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+
+                // Удаляем заказ
+                AppData.db.Order.Remove(order);
+                AppData.db.SaveChanges();
+
+                MessageBox.Show("Заказ успешно удален.", "Информация",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        
+        // Удаление для нескольких строк
+        private void BtnClick_Delete(object sender, RoutedEventArgs e)
+        {
+            var ordersToDelete = new List<ADO.Order>();
+
+            // Собираем отмеченные записи
+            foreach (var item in DG_Orders.Items)
+            {
+                var row = DG_Orders.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+                if (row != null)
+                {
+                    var checkBox = FindVisualChild<CheckBox>(row);
+                    if (checkBox?.IsChecked == true)
+                    {
+                        ordersToDelete.Add(item as ADO.Order);
+                    }
+                }
+            }
+
+            if (ordersToDelete.Count == 0)
+            {
+                MessageBox.Show("Не выбранно ни одного значения для удаления.", "Информация",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            var result = MessageBox.Show($"Вы действительно хотите удалить {ordersToDelete.Count} заказ(ов)?",
+                "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+            // Если пользователь не подтвердил удаление
+            if (result != MessageBoxResult.Yes)
+            {
+                MessageBox.Show("Удаление отменено", "Информация",
+                              MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            // Удаляем выбранные заказы
+            try
+            {
+                foreach (var order in ordersToDelete)
+                {
+                    AppData.db.Order.Remove(order);
+                    AppData.db.SaveChanges();
+
+                    DG_Orders.ItemsSource = AppData.db.Order.ToList(); // Обновляем таблицу
+                    MessageBox.Show("Удаление завершено.", "Информация",
+                                MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // Вспомогательный метод для поиска CheckBox в строке
+        private T FindVisualChild<T>(DependencyObject obj) where T : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                var child = VisualTreeHelper.GetChild(obj, i);
+                if (child is T) return (T)child;
+                var childOfChild = FindVisualChild<T>(child);
+                if (childOfChild != null) return childOfChild;
+            }
+            return null;
+        }
+
+        private void BtnClick_Edit(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Получаем объект данных из строки, где находится кнопка
+                var button = sender as Button;
+                var order = button.DataContext as ADO.Order;
+
+                if (order == null)
+                {
+                    MessageBox.Show("Не удалось получить данные заказа.", "Ошибка",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Создаем и настраиваем окно редактирования
+
+                var editOrderWindow = new AddOrderWindow();
+
+                // Передаем ID заказа, который редактируется
+                editOrderWindow.EditingOrderId = order.Order_ID;
+
+                // Заполняем поля
+                editOrderWindow.Tbox_Order_ID.Text = order.Order_ID.ToString();
+                editOrderWindow.Dpicker_DateBuy.SelectedDate = order.DateBuy;
+                editOrderWindow.Cbox_Film.SelectedValue = order.Film_ID;
+                editOrderWindow.Dpicker_DateSession.SelectedDate = order.DateSession;
+                editOrderWindow.Cbox_PriceList.SelectedValue = order.PriceList_ID;
+                editOrderWindow.Tbox_Count.Text = order.Count.ToString();
+                editOrderWindow.Cbox_PaymentType.SelectedValue = order.PaymentType_ID;
+                editOrderWindow.Tbox_Note.Text = order.Note.ToString();
+
+                // Скрываем кнопку "добавить" и показываем кнопку "сохранить"
+                editOrderWindow.Btn_Add.Visibility = Visibility.Collapsed;
+                editOrderWindow.Btn_Save.Visibility = Visibility.Visible;
+
+                editOrderWindow.Tb_Order_ID.Visibility = Visibility.Visible;
+                editOrderWindow.Tbox_Order_ID.Visibility = Visibility.Visible;
+
+                // Открываем окно
+                editOrderWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка: " + ex.Message , "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // Загружаем все данные в ComboBox из БД
+        private void LoadFilm()
+        {
+            try
+            {
+                // Получаем все фильмы из БД и сортируем по названию
+                var films = AppData.db.Film.OrderBy(f => f.Title).ToList();
+
+                // Назначем источник данных для ComboBox
+                Cbox_Film.ItemsSource = films;
+                // Указываем какое поле отображать (Title)
+                Cbox_Film.DisplayMemberPath = "Title";
+                // Указываем какое поле будет значением (Film_ID)
+                Cbox_Film.SelectedValuePath = "Film_ID";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void LoadPriceList()
+        {
+            try
+            {
+                // Получаем все цены из БД и сортируем по названию
+                var price = AppData.db.PriceList.OrderBy(p => p.Price).ToList();
+
+                // Назначем источник данных для ComboBox
+                Cbox_PriceList.ItemsSource = price;
+                // Указываем какое поле отображать (Price)
+                Cbox_PriceList.DisplayMemberPath = "Price";
+                // Указываем какое поле будет значением (PriceList_ID)
+                Cbox_PriceList.SelectedValuePath = "PriceList_ID";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void LoadPaymentType()
+        {
+            try
+            {
+                // Получаем все спобосы оплаты из БД и сортируем по названию
+                var paymentType = AppData.db.PaymentType.OrderBy(f => f.Title).ToList();
+
+                // Назначем источник данных для ComboBox
+                Cbox_PaymentType.ItemsSource = paymentType;
+                // Указываем какое поле отображать (Title)
+                Cbox_PaymentType.DisplayMemberPath = "Title";
+                // Указываем какое поле будет значением (PaymentType_ID)
+                Cbox_PaymentType.SelectedValuePath = "PaymentType_ID";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

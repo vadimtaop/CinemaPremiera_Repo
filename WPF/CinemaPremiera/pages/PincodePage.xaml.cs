@@ -34,20 +34,20 @@ namespace CinemaPremiera.pages
                 // Пересоздаем контекст БД
                 var db = new CinemaPremieraDBEntities();
 
-                var truePincode = await Task.Run(() => db.Auth.AsNoTracking().FirstOrDefault()?.Pincode);
+                var authRecords = await Task.Run(() => db.Auth.AsNoTracking().Include("Role").ToList());
 
-                this.TruePincode = truePincode;
+                this.AuthRecords = authRecords;
                 db.Dispose(); // Закрываем подключение
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка загрузки пин-кода: {ex.Message}", "Ошибка",
+                MessageBox.Show($"Ошибка загрузки данных: {ex.Message}", "Ошибка",
                     MessageBoxButton.OK, MessageBoxImage.Error);
 
-                this.TruePincode = null;
+                this.AuthRecords = null;
             }
         }
-        private int? TruePincode { get; set; }
+        private List<Auth> AuthRecords { get; set; }
 
         private async void Tbox_Pincode_Tc(object sender, TextChangedEventArgs e)
         {
@@ -60,7 +60,7 @@ namespace CinemaPremiera.pages
                     Tbox_Pincode.IsEnabled = false;
 
                     // Ждем завершения загрузки пин-кода (если еще не загружен)
-                    if (TruePincode == null)
+                    if (AuthRecords == null)
                     {
                         await LoadPincodeAsync();
                     }
@@ -68,21 +68,44 @@ namespace CinemaPremiera.pages
                     // Искусственная задержка
                     await Task.Delay(300);
 
-                    if (int.TryParse(Tbox_Pincode.Text, out int enteredPin) && enteredPin == TruePincode)
+                    if (int.TryParse(Tbox_Pincode.Text, out int enteredPin))
                     {
-                        NavigationService.Navigate(new MenuPage());
+                        // Ищем пользователя по пин-коду
+                        var user = AuthRecords?.FirstOrDefault(a => a.Pincode == enteredPin);
 
-                        if (Application.Current.MainWindow is MainWindow mainWindow)
+                        if (user != null)
                         {
-                            mainWindow.Btn_Menu.Visibility = Visibility.Visible;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Введен неверный PIN-код.\nПовторите попытку.", "Ошибка",
-                            MessageBoxButton.OK, MessageBoxImage.Error);
+                            // Определяем роль и выводим сообщение
+                            string roleMessage = GetRoleMessage(user.Role_ID);
+                            string userName = $"Пин-код: {enteredPin}";
 
-                        Tbox_Pincode.Clear();
+                            MessageBox.Show($"Успешный вход!\nВаша роль: {roleMessage}",
+                                "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                            // Переход на страницу заказов
+                            NavigationService.Navigate(new OrderPage());
+
+                            if (Application.Current.MainWindow is MainWindow mainWindow)
+                            {
+                                mainWindow.Btn_Menu.Visibility = Visibility.Visible;
+
+                                if (user.Role_ID == 1) // Администратор
+                                {
+                                    mainWindow.Spanel_Admin.Visibility = Visibility.Visible;
+                                }
+                                else
+                                {
+                                    mainWindow.Spanel_Admin.Visibility = Visibility.Collapsed;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Введен неверный PIN-код.\nПовторите попытку.", "Ошибка",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
+
+                            Tbox_Pincode.Clear();
+                        }
                     }
                 }
                 finally
@@ -92,14 +115,22 @@ namespace CinemaPremiera.pages
                     Tbox_Pincode.IsEnabled = true;
                 }
             }
+        }
 
-
-
-
+        private string GetRoleMessage(int roleId)
+        {
+            switch (roleId)
+            {
+                case 1:
+                    return "Администратор";
+                case 2:
+                    return "Кассир";
+                default:
+                    return "Не определена";
+            }
         }
 
         // Кнопки с цифрами
-
         private void BtnClick_One(object sender, RoutedEventArgs e)
         {
             if(Tbox_Pincode.Text.Length < 4)

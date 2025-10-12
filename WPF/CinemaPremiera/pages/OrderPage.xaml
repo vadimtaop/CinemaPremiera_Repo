@@ -1,4 +1,4 @@
-﻿<Page x:Class="CinemaPremiera.pages.MenuPage"
+﻿<Page x:Class="CinemaPremiera.pages.OrderPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:CinemaPremiera.pages"
       mc:Ignorable="d"
       d:DesignHeight="875" d:DesignWidth="1300"
-      Title="MenuPage">
+      Title="OrderPage">
 
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
@@ -79,6 +79,11 @@
                                 <TextBlock Text="Общий поиск" Margin="0 10 0 0"
                                        Style="{StaticResource Tblock_Filters}"/>
                                 <TextBox x:Name="Tbox_Search" Margin="0 10 0 0"
+                                     Height="25" Width="150" FontSize="16"
+                                     Style="{StaticResource Tbox_Filters}"/>
+                                <TextBlock Text="Номер заказа" Margin="0 10 0 0"
+                                       Style="{StaticResource Tblock_Filters}"/>
+                                <TextBox x:Name="Tbox_Order_ID" Margin="0 10 0 0"
                                      Height="25" Width="150" FontSize="16"
                                      Style="{StaticResource Tbox_Filters}"/>
                                 <TextBlock Text="Дата покупки (с):" Margin="0 10 0 0"
@@ -210,9 +215,9 @@
                 </LinearGradientBrush>
             </DataGrid.Background>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" MinWidth="40" Binding="{Binding Order_ID}"/>
+                <DataGridTextColumn Header="Номер" MinWidth="50" Binding="{Binding Order_ID}"/>
                 <DataGridTextColumn Header="Дата покупки" MinWidth="85" Binding="{Binding DateBuy, StringFormat=\{0:dd.MM.yyyy\}}"/>
-                <DataGridTextColumn Header="Название фильма" MinWidth="150" Width="150*" Binding="{Binding Film.Title}"/>
+                <DataGridTextColumn Header="Название фильма" MinWidth="120" Width="120*" Binding="{Binding Film.Title}"/>
                 <DataGridTextColumn Header="Дата сеанса" MinWidth="85" Binding="{Binding DateSession, StringFormat=\{0:dd.MM.yyyy\}}"/>
                 <DataGridTextColumn Header="Цена" MinWidth="50" Binding="{Binding PriceList.Price}"/>
                 <DataGridTextColumn Header="Кол-во" MinWidth="50" Binding="{Binding Count}"/>

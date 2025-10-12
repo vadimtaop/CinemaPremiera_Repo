@@ -18,11 +18,11 @@ using System.Windows.Shapes;
 namespace CinemaPremiera.windows
 {
     /// <summary>
-    /// Логика взаимодействия для FormWindow.xaml
+    /// Логика взаимодействия для AddOrderWindow.xaml
     /// </summary>
-    public partial class FormWindow : Window
+    public partial class AddOrderWindow : Window
     {
-        public FormWindow()
+        public AddOrderWindow()
         {
             InitializeComponent();
 
@@ -84,9 +84,6 @@ namespace CinemaPremiera.windows
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-
-
         private void Tc_CalcCheckSum(object sender, EventArgs e)
         {
             // 1. Получаем цену (правильный способ)

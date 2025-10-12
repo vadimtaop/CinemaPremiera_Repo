@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Vadim\source\repos\CinemaPremiera_Repo\WPF\CinemaPremiera\obj\Debug\
+C:\Users\hp-1\Desktop\К\CinemaPremiera_Repo\WPF\CinemaPremiera\obj\Debug\
 CinemaPremiera
 none
 false
 DEBUG;TRACE
-C:\Users\Vadim\source\repos\CinemaPremiera_Repo\WPF\CinemaPremiera\App.xaml
-4-1844934787
+C:\Users\hp-1\Desktop\К\CinemaPremiera_Repo\WPF\CinemaPremiera\App.xaml
+102049267702
 2364916391
-20-422135287
-143-631209098
-MainWindow.xaml;pages\MenuPage.xaml;pages\PincodePage.xaml;windows\FormWindow.xaml;
+261458401924
+143899824045
+MainWindow.xaml;pages\FilmPage.xaml;pages\OrderPage.xaml;pages\PincodePage.xaml;pages\PriceListPage.xaml;pages\UserPage.xaml;windows\AddFilmWindow.xaml;windows\AddOrderWindow.xaml;windows\AddPriceListWindow.xaml;windows\AddUserWindow.xaml;
 
-False
+True
 

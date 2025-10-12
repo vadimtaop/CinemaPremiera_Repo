@@ -1,11 +1,11 @@
-﻿<Window x:Class="CinemaPremiera.windows.FormWindow"
+﻿<Window x:Class="CinemaPremiera.windows.AddOrderWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CinemaPremiera.windows"
         mc:Ignorable="d"
-        Title='Кинотеатр "Премьера"' Height="650" Width="450"
+        Title='Кинотеатр "Премьера"' Height="690" Width="450"
         Background="#FFF0F0FF" WindowStartupLocation="CenterScreen"
         Icon="../images/logo.png">
     <Grid>
@@ -56,9 +56,12 @@
             <StackPanel Orientation="Vertical" Margin="0 20 10 0" Grid.Column="0"
                         HorizontalAlignment="Right" VerticalAlignment="Top"
                         Grid.Row="0">
+                <TextBlock Text="Номер:*" HorizontalAlignment="Right"
+                           FontSize="14" FontWeight="Medium" Name="Tb_Order_ID"
+                           Height="25" Visibility="Collapsed"/>
                 <TextBlock Text="Дата покупки:*" HorizontalAlignment="Right"
                            FontSize="14" FontWeight="Medium"
-                           Height="25"/>
+                           Height="25" Margin="0 20 0 0"/>
                 <TextBlock Text="Название фильма:*" HorizontalAlignment="Right"
                            FontSize="14" FontWeight="Medium" Margin="0 20 0 0"
                            Height="25"/>
@@ -82,7 +85,10 @@
             <StackPanel Orientation="Vertical" Margin="10 20 0 0" Grid.Column="1"
                         HorizontalAlignment="Left" VerticalAlignment="Top"
                         Grid.Row="0">
-                <DatePicker Height="25" Width="150"
+                <TextBox Height="25" Width="150" Name="Tbox_Order_ID"
+                         Style="{StaticResource Tbox_Filters}"
+                         IsReadOnly="True" Visibility="Collapsed"/>
+                <DatePicker Height="25" Width="150" Margin="0 20 0 0"
                             Name="Dpicker_DateBuy" HorizontalAlignment="Right"
                             Style="{StaticResource Dpicker_Filters}"/>
                 <ComboBox Height="25" Width="150" Name="Cbox_Film"

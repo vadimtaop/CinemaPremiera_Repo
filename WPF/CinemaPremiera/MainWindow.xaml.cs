@@ -47,5 +47,37 @@ namespace CinemaPremiera
                 Border_Menu.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void BtnClick_Film(object sender, RoutedEventArgs e)
+        {
+            string path = "pages/FilmPage.xaml";
+            MainFrame.Source = new Uri(path, UriKind.Relative);
+
+            Border_Menu.Visibility = Visibility.Collapsed;
+        }
+
+        private void BtnClick_Order(object sender, RoutedEventArgs e)
+        {
+            string path = "pages/OrderPage.xaml";
+            MainFrame.Source = new Uri(path, UriKind.Relative);
+
+            Border_Menu.Visibility = Visibility.Collapsed;
+        }
+
+        private void BtnClick_PriceList(object sender, RoutedEventArgs e)
+        {
+            string path = "pages/PriceListPage.xaml";
+            MainFrame.Source = new Uri(path, UriKind.Relative);
+
+            Border_Menu.Visibility = Visibility.Collapsed;
+        }
+
+        private void BtnClick_User(object sender, RoutedEventArgs e)
+        {
+            string path = "pages/UserPage.xaml";
+            MainFrame.Source = new Uri(path, UriKind.Relative);
+
+            Border_Menu.Visibility = Visibility.Collapsed;
+        }
     }
 }

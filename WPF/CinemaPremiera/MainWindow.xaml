@@ -64,7 +64,7 @@
             </Border>
 
             <Frame Source="pages/PincodePage.xaml" NavigationUIVisibility="Hidden"
-                   Grid.Row="1"/>
+                   Grid.Row="1" Name="MainFrame"/>
         </Grid>
 
         <Border BorderBrush="DarkSlateBlue"
@@ -77,9 +77,10 @@
                 Margin="10,80,0,0" Visibility="Collapsed">
             <StackPanel Orientation="Vertical" Name="Spanel_Menu"
                     HorizontalAlignment="Left" VerticalAlignment="Top"
-                    Height="120" Width="130" Visibility="Visible">
+                    Width="130" Visibility="Visible">
                 <Button Height="25" Width="auto"
-                        Style="{StaticResource Btn_Filters}">
+                        Style="{StaticResource Btn_Filters}"
+                        Click="BtnClick_Order" Name="Btn_Order">
                     <DockPanel LastChildFill="True">
                         <Image Source="/images/Order.png"
                                Width="20" Height="20"
@@ -88,26 +89,41 @@
                                    VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
                     </DockPanel>
                 </Button>
-                <Button Height="25" Width="auto" Margin="0 5 0 0"
-                        Style="{StaticResource Btn_Filters}">
-                    <DockPanel LastChildFill="True">
-                        <Image Source="/images/Film.png"
+                <StackPanel Name="Spanel_Admin" Visibility="Collapsed">
+                    <Button Height="25" Width="auto" Margin="0 5 0 0"
+                        Style="{StaticResource Btn_Filters}"
+                        Click="BtnClick_Film" Name="Btn_Film">
+                        <DockPanel LastChildFill="True">
+                            <Image Source="/images/Film.png"
                                Width="20" Height="20"
                                VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Фильмы" Margin="5 0 0 0" FontSize="15"
+                            <TextBlock Text="Фильмы" Margin="5 0 0 0" FontSize="15"
                                    VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-                    </DockPanel>
-                </Button>
-                <Button Height="25" Width="auto" Margin="0 5 0 0"
-                        Style="{StaticResource Btn_Filters}">
-                    <DockPanel LastChildFill="True">
-                        <Image Source="/images/Schedule.png"
+                        </DockPanel>
+                    </Button>
+                    <Button Height="25" Width="auto" Margin="0 5 0 0"
+                        Style="{StaticResource Btn_Filters}"
+                        Click="BtnClick_PriceList" Name="Btn_PriceList">
+                        <DockPanel LastChildFill="True">
+                            <Image Source="/images/Money.png"
                                Width="20" Height="20"
                                VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Расписание" Margin="5 0 0 0" FontSize="15"
+                            <TextBlock Text="Список цен" Margin="5 0 0 0" FontSize="15"
                                    VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-                    </DockPanel>
-                </Button>
+                        </DockPanel>
+                    </Button>
+                    <Button Height="25" Width="auto" Margin="0 5 0 0"
+                        Style="{StaticResource Btn_Filters}"
+                        Click="BtnClick_User" Name="Btn_User">
+                        <DockPanel LastChildFill="True">
+                            <Image Source="/images/User.png"
+                               Width="20" Height="20"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Пользователи" Margin="5 0 0 0" FontSize="15"
+                                   VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                        </DockPanel>
+                    </Button>
+                </StackPanel>
                 <Button Height="25" Width="auto" Margin="0 5 0 0"
                         Style="{StaticResource Btn_Filters}"
                         Name="Btn_Exit" Click="BtnClick_Exit">
