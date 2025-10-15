@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\hp-1\\Desktop\\\u041A\\CinemaPremiera_Repo\\WPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|C:\\Users\\hp-1\\Desktop\\\u041A\\CinemaPremiera_Repo\\WPF\\cinemapremiera\\pages\\pincodepage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|solutionrelative:cinemapremiera\\pages\\pincodepage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|c:\\users\\hp-1\\desktop\\\u043A\\cinemapremiera_repo\\wpf\\cinemapremiera\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|solutionrelative:cinemapremiera\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|C:\\Users\\hp-1\\Desktop\\\u041A\\CinemaPremiera_Repo\\WPF\\cinemapremiera\\pages\\pincodepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|solutionrelative:cinemapremiera\\pages\\pincodepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|c:\\users\\hp-1\\desktop\\\u043A\\cinemapremiera_repo\\wpf\\cinemapremiera\\windows\\addfilmwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9F41D62C-B28C-410B-A9AD-9F63D74EBB5D}|CinemaPremiera\\CinemaPremiera.csproj|solutionrelative:cinemapremiera\\windows\\addfilmwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 260,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,39 +26,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\hp-1\\Desktop\\\u041A\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "CinemaPremiera\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\hp-1\\Desktop\\\u041A\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\MainWindow.xaml",
-              "RelativeToolTip": "CinemaPremiera\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-10-12T16:48:38.249Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PincodePage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\hp-1\\Desktop\\\u041A\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\pages\\PincodePage.xaml.cs",
-              "RelativeDocumentMoniker": "CinemaPremiera\\pages\\PincodePage.xaml.cs",
-              "ToolTip": "C:\\Users\\hp-1\\Desktop\\\u041A\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\pages\\PincodePage.xaml.cs",
-              "RelativeToolTip": "CinemaPremiera\\pages\\PincodePage.xaml.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAmwGEAAABeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T16:15:48.731Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PincodePage.xaml",
-              "DocumentMoniker": "C:\\Users\\hp-1\\Desktop\\\u041A\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\pages\\PincodePage.xaml",
-              "RelativeDocumentMoniker": "CinemaPremiera\\pages\\PincodePage.xaml",
-              "ToolTip": "C:\\Users\\hp-1\\Desktop\\\u041A\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\pages\\PincodePage.xaml",
-              "RelativeToolTip": "CinemaPremiera\\pages\\PincodePage.xaml",
+              "Title": "AddFilmWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\hp-1\\Desktop\\\u041A\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\windows\\AddFilmWindow.xaml",
+              "RelativeDocumentMoniker": "CinemaPremiera\\windows\\AddFilmWindow.xaml",
+              "ToolTip": "C:\\Users\\hp-1\\Desktop\\\u041A\\CinemaPremiera_Repo\\WPF\\CinemaPremiera\\windows\\AddFilmWindow.xaml",
+              "RelativeToolTip": "CinemaPremiera\\windows\\AddFilmWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-10-12T16:15:45.228Z"
+              "WhenOpened": "2025-10-15T14:37:33.937Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:CinemaPremiera.windows"
         mc:Ignorable="d"
         Title='Кинотеатр "Премьера"' Height="690" Width="450"
+        MinHeight="690" MinWidth="450"
         Background="#FFF0F0FF" WindowStartupLocation="CenterScreen"
         Icon="../images/logo.png">
     <Grid>
